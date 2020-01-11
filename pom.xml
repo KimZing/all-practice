@@ -10,6 +10,7 @@
 
     <modules>
         <module>practice-java</module>
+        <module>practice-netty</module>
         <module>program-tetris</module>
     </modules>
 
