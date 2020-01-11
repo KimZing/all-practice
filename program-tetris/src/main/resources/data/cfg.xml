@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<game>
+    <frame title="Java俄罗斯方块" up="15" width="1100" height="700" border="7" padding="16"
+           borderRow="5" maxData="5" maxShadow="9">
+        <button w="116" h="51">
+            <start x="770" y="48"/>
+            <config x="905" y="48"/>
+        </button>
+        <windowPaint className="com.kimzing.tetris.ui.WindowBackground" x="0" y="0" w="0" h="0"/>
+        <windowPaint className="com.kimzing.tetris.ui.WindowDB" x="24" y="24" w="334" h="283"/>
+        <windowPaint className="com.kimzing.tetris.ui.WindowLocal" x="24" y="331" w="334" h="283"/>
+        <windowPaint className="com.kimzing.tetris.ui.WindowGame" x="382" y="24" w="334" h="590"/>
+        <windowPaint className="com.kimzing.tetris.ui.WindowAbout" x="740" y="496" w="320" h="118"/>
+        <windowPaint className="com.kimzing.tetris.ui.WindowScore" x="740" y="272" w="320" h="200"/>
+        <windowPaint className="com.kimzing.tetris.ui.WindowLevel" x="940" y="148" w="120" h="100"/>
+        <windowPaint className="com.kimzing.tetris.ui.WindowNext" x="740" y="148" w="200" h="100"/>
+        <windowPaint className="com.kimzing.tetris.ui.WindowStart" x="740" y="24" w="320" h="100"/>
+    </frame>
+    <system maxX="9" maxY="17"
+            length="7" l0="0" l1="10" l2="30" l3="50" l4="70" l5="100" l6="140" typeNumber="7" lineLevel="5">
+        <rect round="true">
+            <point x="5" y="0"/>
+            <point x="3" y="0"/>
+            <point x="4" y="0"/>
+            <point x="6" y="0"/>
+        </rect>
+        <rect round="true">
+            <point x="4" y="1"/>
+            <point x="3" y="1"/>
+            <point x="5" y="1"/>
+            <point x="4" y="2"/>
+        </rect>
+        <rect round="true">
+            <point x="4" y="0"/>
+            <point x="3" y="0"/>
+            <point x="5" y="0"/>
+            <point x="3" y="1"/>
+        </rect>
+        <rect round="true">
+            <point x="4" y="0"/>
+            <point x="5" y="0"/>
+            <point x="3" y="1"/>
+            <point x="4" y="1"/>
+        </rect>
+        <rect round="false">
+            <point x="4" y="0"/>
+            <point x="5" y="0"/>
+            <point x="4" y="1"/>
+            <point x="5" y="1"/>
+        </rect>
+        <rect round="true">
+            <point x="4" y="0"/>
+            <point x="3" y="0"/>
+            <point x="5" y="0"/>
+            <point x="5" y="1"/>
+        </rect>
+        <rect round="true">
+            <point x="4" y="0"/>
+            <point x="3" y="0"/>
+            <point x="4" y="1"/>
+            <point x="5" y="1"/>
+        </rect>
+    </system>
+    <data>
+        <dataA className="com.kimzing.tetris.dao.DataBase">
+            <param key="driver" value="com.mysql.jdbc.Driver"/>
+            <param key="db_url" value="jdbc:mysql://localhost:3306/game_test"/>
+            <param key="db_userName" value="king"/>
+            <param key="db_userPassword" value="king1013!"/>
+            <param key="select"
+                   value="SELECT user_name ,user_point FROM user_point ORDER BY user_point DESC LIMIT 0,5"/>
+            <param key="insert" value="INSERT INTO user_point(user_name,user_point,type_id) values(?,?,?)"/>
+        </dataA>
+        <dataB className="com.kimzing.tetris.dao.DataLocal">
+            <param key="path" value="/data/recoder.data"/>
+        </dataB>
+    </data>
+</game>
