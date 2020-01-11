@@ -1,0 +1,66 @@
+html,
+body,
+#app,
+.el-container {
+  padding: 0px;
+  margin: 0px;
+  height: 100%;
+}
+
+.el-footer {
+  background-color: #3f3f3f;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  line-height: 60px;
+}
+
+.el-header {
+  background-color: #3f3f3f;
+  color: rgb(255, 255, 255);
+  text-align: left;
+  line-height: 60px;
+}
+
+.el-aside {
+  background-color: #20222a;
+  color: rgb(63, 174, 226);
+  text-align: left;
+  line-height: 200px;
+}
+
+.el-main {
+  background-color: #e9eef3;
+  color: #333;
+  text-align: left;
+}
+
+body > .el-container {
+  margin-bottom: 40px;
+}
+
+.el-container:nth-child(5) .el-aside,
+.el-container:nth-child(6) .el-aside {
+  line-height: 260px;
+}
+
+.el-container:nth-child(7) .el-aside {
+  line-height: 320px;
+}
+
+.el-form {
+  width: 20%;
+}
+
+.system-header {
+  display: flex;
+  font-size: 18px;
+  justify-content: space-between;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.login-box {
+  display: flex;
+  min-width: 165px;
+  align-items: center;
+  justify-content: space-between;
+}

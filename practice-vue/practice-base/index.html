@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+        <div id="app">
+            <!-- 文本插值 -->
+            <!--仅插入一次-->
+            <span v-once> {{message}},  {{info.a}}</span><br/>
+            <!--双向绑定-->
+            <span> {{message}},  {{info.a}}</span><br/>
+
+            <!-- 原始输出html -->
+            <span>{{rawHtml}}</span><br/>
+            <!-- 以html输出 -->
+            <span v-html="rawHtml"></span><br/>
+
+            <!-- 动态绑定属性 -->
+            <span v-bind:class="color">i am text</span><br/>
+
+            <!-- JavaScript表达式 -->
+            <!-- 加减 -->
+            <span>{{number + 1}}</span><br/>
+            <!-- 三元 -->
+            <span>{{isRight ? "对的": "错的"}}</span><br/>
+            <!-- 函数运算，反转 -->
+            <span>{{name.split("").reverse().join("")}}</span><br/>
+
+            <!-- 指令 -->
+            <span v-if="test">你知道我是谁吗</span><br/>
+            <!-- 参数 -->
+            <span><a v-bind:href="url">点我一下</a></span><br/>
+            <span v-on:click="alertMsg">弹一弹</span>
+            <!-- 修饰符  .stop-->
+            <div v-on:click="click1">
+                <div v-on:click.stop="click2">来一个</div>
+            </div><br>
+
+            <!-- class与style的绑定 -->
+            <!-- v-bind:class可以与普通属性共存，可以通过{active:isActive}动态切换，也可以传入多个class -->
+            <div :class="{active:isActive, green: isGreen}" class="size" style="color:red;">Hi Vue</div><br/>
+            <!-- 也可以使用数组进行添加，支持三元运算 -->
+            <div :class="['active', hasError ? 'errMsg' : '']">Hi Vue</div>
+
+            <!-- 条件渲染 -->
+            <div v-if="age <= 18">18岁</div>
+            <div v-else-if="age >= 25 && age < 30">25岁</div>
+            <div v-else-if="age >= 30">30+岁</div>
+            <!-- show显示隐藏元素 -->
+            <div v-show="isShow">I am here</div>
+
+            <!-- 列表渲染 -->
+            <!-- 遍历集合 -->
+            <ul>
+                <!-- 可以添加index接收顺序 -->
+                <li v-for = "item,index in itemData">{{index}} : {{item.name}}</li>
+            </ul>
+            <!-- 遍历对象 -->
+            <table :class="table">
+                <!-- 缩写v-bind  : -->
+                <tr v-for="value, key in itemObject" :key="key">
+                    <td>{{key}}</td>
+                    <td>{{value}}</td>
+                </tr>
+            </table>
+
+            <!-- 事件 -->
+            <!-- 简单的逻辑可以直接进行书写 -->
+            <!-- 事件函数可以传递参数，包含特殊的事件 -->
+            <button v-on:click="click('abc', $event, counter)">{{counter}}</button><br/>
+
+            <!-- 双向绑定 -->
+            <!--文本框-->
+            <input type="text" v-model="textStr"/>
+            <div>{{textStr}}</div>
+            <!-- 文本域 -->
+            <input type="area" v-model="areaStr">
+            <div>{{areaStr}}</div>
+            <!-- 复选框 -->
+            <input type="checkbox" id="choice1" value="choice1" v-model="check1"><label>choice1</label>
+            <input type="checkbox" id="choice2" value="choice2" v-model="check1"><label>choice2</label>
+            <input type="checkbox" id="choice3" value="choice3" v-model="check1"><label>choice3</label>
+            <div>{{check1}}</div>
+            <!-- 单选 -->
+            <input type="radio" id = "radio1" value="radio1" v-model="radioValue"></input><label>radio1</label>
+            <input type="radio" id = "radio2" value="radio2" v-model="radioValue"></input><label>radio2</label>
+            <div>{{radioValue}}</div>
+            <!-- 提交页面数据 -->
+            <button v-on:click="submit">提交数据</button>
+
+            <!-- 全局组件 -->
+            <!-- 添加事件通知 -->
+            <kim name="jin:" age="18:" @add-count="addCounter">
+                <h3>自定义标题</h3>
+            </kim>
+            <!-- 不添加事件通知 -->
+            <kim name="jin:" age="18:"></kim>
+
+            <!-- 局部组件 -->
+            <zing></zing>
+            <!-- 使用对象形式 -->
+            <kimzing></kimzing>
+
+        </div>
+    
+        <script type="text/javascript">
+            // 全局注册
+            Vue.component("kim", {
+                // 定义属性
+                props: ["name", "age"],
+                // 定义成函数方便复用
+                data: function() {
+                    return {
+                        counter: 0
+                    };
+                },
+                //可以使用插槽，插入自定义内容
+                template: '<div><button v-on:click="add">{{name}}{{age}}{{counter}}</button><slot></slot></div>',
+                methods: {
+                    add: function() {
+                        this.counter++;
+                        //向外部传递事件，可以携带参数, 不能使用驼峰，使用中划线
+                        this.$emit('add-count', this.counter);
+                    }
+                }
+            });
+            // 外部传递值, 必须在vue初始化之前就对变量进行声名
+            var info = {a:123};
+            // 局部组件
+            var kimzing = {
+                template: "<h2>kimzing局部组件</h2>"
+            }
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    message: 'Hello Vue!',
+                    info: info,
+                    rawHtml: '<span style="color:red">this is html</span>',
+                    color: "red",
+                    number: 10,
+                    isRight: true,
+                    name: "KimZing",
+                    test: true,
+                    url: "https://www.baidu.com",
+                    isActive: 1 == 1 ? true : false,
+                    isGreen: true,
+                    hasError: true,
+                    age: 18,
+                    isShow: "asdf",
+                    itemData: [
+                        {"name": "a"},
+                        {"name": "b"},
+                        {"name": "c"}
+                    ],
+                    itemObject: {
+                        "name": "kim",
+                        "age": "26"
+                    },
+                    table: "table",
+                    counter: 0,
+                    textStr: "who are you",
+                    areaStr: "wwwwwwwwwwwwwwwwwsswwwwaawww",
+                    check1: ["choice1","choice2"],
+                    radioValue: "radio1"
+                },
+                methods: {
+                    alertMsg: function () {
+                        alert("Hello");
+                    },
+                    click1: function() {
+                        alert("click1");
+                    },
+                    click2: function() {
+                        alert("click2");
+                    },
+                    click: function(str, e, counter) {
+                        app.$data.counter = counter + 1;
+                        // alert(str);
+                        console.log(e);
+                    },
+                    submit: function() {
+                        var data = {
+                            check: this.check1,
+                            radio: this.radioValue,
+                            msg: this.age
+                        };
+                        alert(data.check);
+                    },
+                    //组件传递过来的事件
+                    addCounter: function(count) {
+                        alert(count);
+                    }
+                },
+                // 生命周期函数
+                beforeCreate: function() {
+                    console.log("beforeCreate");
+                },
+                created: function() {
+                    console.log("created");
+                },
+                beforeUpdate: function() {
+                    console.log("beforeUpdate");
+                },
+                updated: function() {
+                    console.log("updated");
+                },
+                components: {
+                    zing: {
+                        template: "<div><h2>局部组件</h2></div>"
+                    },
+                    kimzing: kimzing
+                }
+            });
+            app.$watch('message', function(newVal, oldVal) {
+                console.log(oldVal, newVal);
+            });
+            info.a = 'KimZing2';
+            // 使用$符合调用vue的内部属性，与用户定义区分开
+            app.$data.message = 'Hello';
+            app.$data.url = "http://kimzing.com"
+        </script>
+        <style type="text/css">
+            .red{
+                color: red;
+            }
+            .active{
+                background-color: green;
+            }
+            .size {
+                font-size: 100px;
+            }
+            .errMsg {
+                color: blueviolet;
+            }
+            .table {
+                border:2px solid #F00
+            }
+        </style>
+</body>
+</html>
