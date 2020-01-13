@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	"go-practice/5.interface/1.retriever"
-	"go-practice/5.interface/2.mock"
-	"go-practice/5.interface/3.real"
+	"practice-go/5.interface/1.retriever"
+	"practice-go/5.interface/2.mock"
+	"practice-go/5.interface/3.real"
 	"time"
 )
 

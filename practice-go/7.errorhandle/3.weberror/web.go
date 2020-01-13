@@ -1,7 +1,7 @@
 package main
 
 import (
-	"go-practice/7.errorhandle/3.weberror/filehandle"
+	"practice-go/7.errorhandle/3.weberror/filehandle"
 	"log"
 	"net/http"
 	_ "net/http/pprof"

@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"go-practice/4.package/1.tree"
+	"practice-go/4.package/1.tree"
 
 )
 

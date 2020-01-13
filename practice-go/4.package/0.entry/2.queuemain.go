@@ -7,8 +7,8 @@ package main
 
 import (
 	"fmt"
-	"go-practice/4.package/1.tree"
-	"go-practice/4.package/2.queue"
+	"practice-go/4.package/1.tree"
+	"practice-go/4.package/2.queue"
 )
 
 type MyNode struct {

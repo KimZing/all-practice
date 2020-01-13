@@ -12,7 +12,7 @@ package main
 
 import (
 	"fmt"
-	"go-practice/6.functional/1.adder"
+	"practice-go/6.functional/1.adder"
 )
 
 func main() {

@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"go-practice/7.errorhandle/weberror/filehandle"
+	"practice-go/7.errorhandle/weberror/filehandle"
 	"net/http"
 	"os"
 )

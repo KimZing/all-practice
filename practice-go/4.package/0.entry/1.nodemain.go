@@ -13,7 +13,7 @@
 package main
 
 import (
-	"go-practice/4.package/1.tree"
+	"practice-go/4.package/1.tree"
 )
 
 //我们对 `3.struct`进行改造,
