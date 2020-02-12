@@ -16,6 +16,7 @@ func InitSlice() {
 	//直接创建:方式一
 	var slice1 []int
 	fmt.Println(slice1)
+	// MARK
 	slice2 := append(slice1, 2)
 	fmt.Println(slice2)
 
@@ -26,7 +27,12 @@ func InitSlice() {
 	//直接创建:方式三,
 	//第二个参数：slice的长度
 	//第三个参数：slice的容量
-	//new返回指针。
+	//new返回指针。  mark  https://www.jb51.net/article/126703.htm
+
+	//https://cloud.tencent.com/developer/article/1453096
+	//mark new分配内存之后，会返回对应（类型为零值）的指针, 值类型系统已经默认分配好，
+	//mark 而channel slice map需要使用make是因为其本身是引用类型, 零值是nil, 而使用make则会同时初始化结构体内部的属性,并返回值直接使用
+
 	//make返回初始化后的（非零）值。
 	temp := make([]int, 3)
 	fmt.Println(temp)
@@ -53,7 +59,7 @@ func sliceAndArrayChange() {
 
 //slice的len和cap
 func lenAndCap() {
-	arr := [10]int{1, 3, 5, 2, 6}
+	arr := [10]int{1, 3, 5, 2, 6,8}
 	s1 := arr[2:5]
 	printLenAndCap(s1)
 	s2 := arr[2:]

@@ -64,11 +64,12 @@ func invoke() {
 	//通过对象直接调用
 	root := treeNode{value: 3}
 	root.setValue(4)
+	(&root).setValue(4)
 	root.println()
 	//通过指针调用
 	proot := &root
 	proot.setValue(5)
-	proot.println()
+	(*proot).println()
 }
 
 //go中nil指针可以调用指针方法(不可以调用普通方法)，但是不可以取值

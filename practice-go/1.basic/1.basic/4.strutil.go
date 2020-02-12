@@ -28,13 +28,15 @@ func main() {
 	b := strconv.FormatFloat(123.23, 'g', 12, 64)
 	c := strconv.FormatInt(1234, 10)
 	d := strconv.FormatUint(12345, 10)
+	// int to ascii
 	e := strconv.Itoa(1023)
-	fmt.Println(a, b, c, d, e)
+	fmt.Println(a, b, c, d)
 
 	aa, _ := strconv.ParseBool("false")
 	bb, _ := strconv.ParseFloat("123.23", 64)
 	cc, _ := strconv.ParseInt("1234", 10, 64)
 	dd, _ := strconv.ParseUint("12345", 10, 64)
+	// ascii to int
 	ee, _ := strconv.Atoi("1023")
 	fmt.Println(aa, bb, cc, dd, ee)
 

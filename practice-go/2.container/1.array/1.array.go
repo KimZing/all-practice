@@ -30,6 +30,7 @@ func printArray(arr [5]int) {
 }
 
 //数组是值传递，会对传入的值进行拷贝，无法修改入参的值。如果想要修改，可以传入指针，但是一般我们不这么用，会使用切片
+// 切片的传入和指针类似，不过会多一些信息
 func modifyArray(arr [5]int) {
 	arr[0] = 1
 	fmt.Println(arr)
