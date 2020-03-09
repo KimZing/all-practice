@@ -6,11 +6,13 @@ package com.kimzing.java.interview.milkfactory.producer;
  * @author KimZing - kimzing@163.com
  * @since 2020/3/9 17:18
  */
-public class MilkProducerThread implements Runnable{
+public class MilkProducer implements Runnable{
 
     @Override
     public void run() {
-
+        while(true) {
+            System.out.println("生产了两份牛奶");
+        }
     }
 
 }

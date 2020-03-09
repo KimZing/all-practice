@@ -1,6 +1,6 @@
 package com.kimzing.java.interview.milkfactory.container;
 
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.ArrayBlockingQueue;
 
 /**
  * 冷库存储.
@@ -10,34 +10,35 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class WareHouse {
 
-    private AtomicInteger cheeses = new AtomicInteger(0);
-
-    private Integer capacity;
+    // 使用阻塞队列充当存储角色
+    private ArrayBlockingQueue<Integer> cheeses;
 
     public WareHouse(int capacity) {
-        this.capacity = capacity;
+        cheeses = new ArrayBlockingQueue(capacity);
     }
 
     /**
      * 放入奶酪
      */
-    public void put() throws InterruptedException {
-        if (cheeses.intValue() < capacity) {
-            System.out.println(String.format("生产-当前奶酪:{}", cheeses.getAndIncrement()));
-        } else {
-            Thread.currentThread().wait();
-        }
+    public void put(Integer i) throws InterruptedException {
+        cheeses.put(i);
+        // System.out.println(String.format("当前存储奶酪:%d", cheeses.size()));
     }
 
     /**
      * 取走奶酪
      */
     public void take() throws InterruptedException {
-        if (cheeses.intValue() >= 100) {
-            cheeses.set(cheeses.intValue() - 100);
-        } else {
-            Thread.currentThread().wait();
-        }
+        cheeses.take();
+        // System.out.println(String.format("当前剩余奶酪:%d", cheeses.size()));
+    }
+
+    /**
+     * 当前仓库的奶酪数量
+     * @return
+     */
+    public int size() {
+        return cheeses.size();
     }
 
 }

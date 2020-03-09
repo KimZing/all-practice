@@ -1,10 +1,8 @@
 package com.kimzing.java.interview.milkfactory;
 
-import com.kimzing.java.interview.milkfactory.consumer.CarConsumerThread;
+import com.kimzing.java.interview.milkfactory.consumer.CarConsumer;
 import com.kimzing.java.interview.milkfactory.container.WareHouse;
-import com.kimzing.java.interview.milkfactory.producer.CheeseProducerThread;
-import com.kimzing.java.interview.milkfactory.producer.FermentationProducerThread;
-import com.kimzing.java.interview.milkfactory.producer.MilkProducerThread;
+import com.kimzing.java.interview.milkfactory.producer.CheeseProducer;
 
 /**
  * 奶酪工厂.
@@ -23,15 +21,11 @@ public class CheeseFactory {
         WareHouse wareHouse = new WareHouse(wareHouseCapacity);
 
         // 生产
-        MilkProducerThread milkProducer = new MilkProducerThread();
-        FermentationProducerThread fermentationProducer = new FermentationProducerThread();
-        CheeseProducerThread cheeseProducer = new CheeseProducerThread(wareHouse, maxCheeseNum);
-        startThread(milkProducer, "milk producer");
-        startThread(fermentationProducer, "fermentation producer");
+        CheeseProducer cheeseProducer = new CheeseProducer(wareHouse, maxCheeseNum);
         startThread(cheeseProducer, "cheese producer");
 
         // 消费者
-        CarConsumerThread carConsumer = new CarConsumerThread(wareHouse, carCapacity);
+        CarConsumer carConsumer = new CarConsumer(wareHouse, carCapacity);
         startThread(carConsumer, "car consumer");
     }
 
