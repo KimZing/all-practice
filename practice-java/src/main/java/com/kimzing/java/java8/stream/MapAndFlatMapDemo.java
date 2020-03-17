@@ -16,12 +16,12 @@ import java.util.stream.Collectors;
 public class MapAndFlatMapDemo {
 
     public static void main(String[] args) {
-        // MARK map用来将流中的每个元素的某个属性转换为一个集合
+        //MARK map用来将流中的每个元素的某个属性转换为一个集合
         List<Student> studentList = getStudents("一");
         List<String> collect = studentList.stream().map(s -> s.getName()).collect(Collectors.toList());
         collect.stream().forEach(System.out::println);
 
-        // MARK flatMap可以将外层元素对应的流进行合并
+        //MARK flatMap可以将外层元素对应的流进行合并
         List<Student> studentList1 = getStudents("一");
         List<Student> studentList2 = getStudents("二");
         List<List<Student>> gradeList = new ArrayList<>();

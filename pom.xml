@@ -12,7 +12,6 @@
         <module>practice-java</module>
         <module>practice-netty</module>
         <module>program-tetris</module>
-        <module>practice-springboot</module>
     </modules>
 
 </project>
