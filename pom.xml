@@ -11,7 +11,7 @@
     <modules>
         <module>practice-java</module>
         <module>practice-netty</module>
-        <module>practice-tetris</module>
+        <module>program-tetris</module>
     </modules>
 
 </project>
