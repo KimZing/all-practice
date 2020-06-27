@@ -1,9 +1,10 @@
 ### Mac
 .DS_Store
 
-### Maven
-target/
-!.mvn/wrapper/maven-wrapper.jar
+### Gradle
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**
 !**/src/test/**
 
@@ -27,11 +28,7 @@ target/
 /nbbuild/
 /dist/
 /nbdist/
-/.nb-gradle/
 build/
 
 ### VS Code ###
 .vscode/
-
-### Node
-node_modules

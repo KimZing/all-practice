@@ -1,0 +1,17 @@
+plugins {
+    id 'java'
+}
+
+group 'org.kimzing'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'dom4j:dom4j:1.6.1'
+    runtimeOnly 'mysql:mysql-connector-java:5.1.44'
+}
