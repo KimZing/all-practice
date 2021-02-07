@@ -1,0 +1,1 @@
+${table.name?upper_case}_1001=${table.comment}ID不能为空

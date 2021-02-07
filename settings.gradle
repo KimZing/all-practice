@@ -1,3 +1,5 @@
 rootProject.name = 'kimzing-practice'
 include 'practice-java'
 include 'program-tetris'
+include 'program-news-service'
+include 'generator'

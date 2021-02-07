@@ -1,0 +1,29 @@
+plugins {
+    id 'java'
+}
+
+group 'com.kimzing'
+version '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+description 'MyBatis Plus 代码生成'
+
+dependencies {
+    // 代码生成
+    implementation 'com.baomidou:mybatis-plus-generator:3.3.2'
+    // mysql连接驱动
+    runtimeOnly 'mysql:mysql-connector-java:5.1.48'
+    // 工具项目
+    implementation 'com.kimzing:kimzing-utils:1.0.0'
+}
+
+repositories {
+    maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
+    maven { url 'http://mvn.kimzing.com/repository/maven-public/' }
+    maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
+    mavenCentral()
+}
+
+// 设置编码为UTF-8 否则在其他编码时，java文件中的中文会乱码
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}

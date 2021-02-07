@@ -1,0 +1,61 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.3.4.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+}
+
+group 'com.kimzing'
+version '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+description '新闻应用后台'
+
+configurations {
+    // 使compileOnly包含annotationProcessor的集合
+    compileOnly {extendsFrom annotationProcessor}
+    // 使testCompileOnly包含testAnnotationProcessor的集合
+    testCompileOnly {extendsFrom testAnnotationProcessor}
+}
+
+dependencies {
+    // webmvc
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    // mybatisPlus数据库操作
+    implementation 'com.baomidou:mybatis-plus-boot-starter:3.1.2'
+    // sql脚本管理
+    implementation 'org.flywaydb:flyway-core'
+    // mysql连接驱动
+    runtimeOnly 'mysql:mysql-connector-java'
+    // 工具项目
+    implementation 'com.kimzing:kimzing-utils:1.0.0'
+    // 自定义starter, 提供各种功能
+    implementation 'com.kimzing:kimzing-springboot-starter:1.0.0'
+    implementation 'com.github.xiaoymin:knife4j-spring-boot-starter:2.0.4'
+    // JSR303校验
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
+    // lombok
+    annotationProcessor 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
+}
+
+test {
+    // 使用junit5
+    useJUnitPlatform()
+}
+
+repositories {
+    maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
+    maven { url 'http://mvn.kimzing.com/repository/maven-public/' }
+    maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
+    mavenCentral()
+}
+
+// 设置编码为UTF-8 否则在其他编码时，java文件中的中文会乱码
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+// 替换配置文件中的内容
+processResources {
+    filter org.apache.tools.ant.filters.ReplaceTokens, tokens: [description: this.description, version: this.version]
+}

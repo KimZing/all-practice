@@ -1,0 +1,93 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: program-news-service
+    version: @version@
+    description: @description@
+  profiles:
+    active: dev
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # 添加&allowMultiQueries=true使得一个接口可以执行多条语句
+    url: jdbc:mysql://localhost:3306/practice-news?setUnicode=true&characterEncoding=utf8&allowMultiQueries=true
+    username: root
+    password: 123456
+
+
+# 基本属性配置
+kimzing:
+  log:
+    # 方法日志开关(默认false)
+    enabled: false
+    # 日志中的时间戳格式(可选)
+    time-pattern: yyyy-MM-dd HH:mm:ss:SSS
+  web:
+    escape:
+      # 是否开启URL和Cookie转义字符(默认true)
+      enabled: true
+    resolver:
+      # 是否开启Get请求方法解析(默认true)
+      json:
+        enabled: true
+    result:
+      # 是否开启统一结果包装
+      enabled: true
+      # 包装哪些包下的返回体
+      package: com.kimzing,com.kingboy
+    advice:
+      # 是否启用异常拦截(默认false)
+      enabled: true
+    log:
+      # 是否启用请求日志打印(默认true)
+      enabled: true
+    cors:
+      # 是否开启跨域支持(默认true)
+      enabled: true
+      origins:
+        - "http://baidu.com"
+        - "http://localhost:8888"
+    restTemplate:
+      # 是否自动配置RestTemplate(默认true)
+      enabled: true
+    info:
+      # 是否启用/info接口(默认false)
+      enabled: true
+      # 接口路径
+      path: /info
+      params:
+        application: ${spring.application.name}
+        port: ${server.port}
+        profile: ${spring.profiles.active}
+        version: ${spring.application.version}
+        description: ${spring.application.description}
+  # swagger配置
+  swagger:
+    # 当存在swagger依赖时，是否开启(默认true)
+    enabled: true
+    title: 新闻
+    description: 新闻练习系统
+    termsOfServiceUrl: localhost:8081
+    authorName: KimZing
+    authorEmail: kimzing@163.com
+    authorUrl: kimzing.com
+    version: 1.0.0
+    basePackage: com.kimzing.news
+
+  # mybatis-plus配置
+  mybatis-plus:
+    page:
+      # 当存在mybatisPlus依赖时，是否开启分页(默认true)
+      enabled: true
+      # 分页join数量查询优化
+      optimizeJoin: true
+    performance:
+      # 当存在mybatisPlus依赖时，是否开启sql分析(默认true)
+      enabled: true
+      # 是否格式化输出SQL
+      formate: true
+      # 排查慢SQL的限制时间
+      maxTime: 1000
+  # 加载指定配置文件到Spring的Environment
+  property:
+    files: ["classpath:message.properties","classpath:exception.properties"]
