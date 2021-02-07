@@ -1,0 +1,114 @@
+<template>
+	<view class="tab">
+		<scroll-view scroll-x class="tab-scroll">
+			<view class="scroll-content">
+				<view class="scroll-item" v-for="item,index in list" :key="index">{{item.name}}</view>
+			</view>
+		</scroll-view>
+		<uni-icons class="tab-icons" type="gear" size="26" color="#666666"></uni-icons>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				list: [{
+						name: "uniapp"
+					},
+					{
+						name: "vue"
+					},
+					{
+						name: "react"
+					},
+					{
+						name: "java"
+					},
+					{
+						name: "go"
+					},
+					{
+						name: "uniapp"
+					},
+					{
+						name: "vue"
+					},
+					{
+						name: "react"
+					},
+					{
+						name: "java"
+					},
+					{
+						name: "go"
+					},
+					{
+						name: "uniapp"
+					},
+					{
+						name: "vue"
+					},
+					{
+						name: "react"
+					},
+					{
+						name: "java"
+					},
+					{
+						name: "go"
+					}
+				]
+			};
+		}
+	}
+</script>
+
+<style lang="scss">
+	.tab {
+		display: flex;
+		width: 100%;
+		background-color: #FFFFFF;
+		border-bottom: 1px #f5f5f5 solid;
+		box-sizing: border-box;
+
+		.tab-scroll {
+			flex: 1;
+			overflow: hidden;
+			box-sizing: border-box;
+
+			.scroll-content {
+				height: 45px;
+				display: flex;
+				align-items: center;
+				flex-wrap: nowrap;
+				box-sizing: border-box;
+
+				.scroll-item {
+					flex-shrink: 0;
+					padding: 0 10px;
+					font-size: 14px;
+					color: #333333;
+				}
+			}
+		}
+
+		.tab-icons {
+			position: relative;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 45px;
+
+			&::after {
+				content: '';
+				position: absolute;
+				top: 12px;
+				bottom: 12px;
+				left: 0;
+				width: 1px;
+				background-color: #ddd;
+			}
+		}
+	}
+</style>
