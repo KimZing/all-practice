@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<navbar></navbar>
-		<tab></tab>
+		<tab :list="labels"></tab>
 		<view v-for="(i,index) in 100" :key="index">{{i}}</view>
 	</view>
 </template>
@@ -10,10 +10,16 @@
 	export default {
 		data() {
 			return {
+				labels: []
 			}
 		},
 		onLoad() {
-			
+			uni.request({
+				url: "http://localhost:8081/label/all",
+				success: (res) => {
+					this.labels = res.data.data
+				}
+			})
 		},
 		methods: {
 
@@ -22,5 +28,5 @@
 </script>
 
 <style lang="scss">
-	
+
 </style>

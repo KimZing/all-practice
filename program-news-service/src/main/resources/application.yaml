@@ -45,8 +45,7 @@ kimzing:
       # 是否开启跨域支持(默认true)
       enabled: true
       origins:
-        - "http://baidu.com"
-        - "http://localhost:8888"
+        - "http://localhost:8080"
     restTemplate:
       # 是否自动配置RestTemplate(默认true)
       enabled: true

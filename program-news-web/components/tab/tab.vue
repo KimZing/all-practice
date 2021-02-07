@@ -11,54 +11,16 @@
 
 <script>
 	export default {
+		props: {
+			list: {
+				type: Array,
+				default() {
+					return []
+				},
+			}
+		},
 		data() {
 			return {
-				list: [{
-						name: "uniapp"
-					},
-					{
-						name: "vue"
-					},
-					{
-						name: "react"
-					},
-					{
-						name: "java"
-					},
-					{
-						name: "go"
-					},
-					{
-						name: "uniapp"
-					},
-					{
-						name: "vue"
-					},
-					{
-						name: "react"
-					},
-					{
-						name: "java"
-					},
-					{
-						name: "go"
-					},
-					{
-						name: "uniapp"
-					},
-					{
-						name: "vue"
-					},
-					{
-						name: "react"
-					},
-					{
-						name: "java"
-					},
-					{
-						name: "go"
-					}
-				]
 			};
 		}
 	}
