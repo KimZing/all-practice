@@ -1,0 +1,1 @@
+INSERT INTO `label`(name) VALUES ("Java"),("前端"),("后端"),("Vue"),("React"),("UniApp"),("Python"),("PHP");

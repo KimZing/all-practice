@@ -30,7 +30,7 @@ func main() {
 	d := strconv.FormatUint(12345, 10)
 	// int to ascii
 	e := strconv.Itoa(1023)
-	fmt.Println(a, b, c, d)
+	fmt.Println(a, b, c, d, e)
 
 	aa, _ := strconv.ParseBool("false")
 	bb, _ := strconv.ParseFloat("123.23", 64)
