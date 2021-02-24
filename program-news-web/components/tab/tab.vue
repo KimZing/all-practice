@@ -2,7 +2,8 @@
 	<view class="tab">
 		<scroll-view scroll-x class="tab-scroll">
 			<view class="scroll-content">
-				<view class="scroll-item" v-for="item,index in list" :key="index">{{item.name}}</view>
+				<view class="scroll-item" :class="{active: activeIndex === index}"
+				v-for="item,index in list" :key="index" @click="handleClick(item, index)">{{item.name}}</view>
 			</view>
 		</scroll-view>
 		<uni-icons class="tab-icons" type="gear" size="26" color="#666666"></uni-icons>
@@ -14,14 +15,20 @@
 		props: {
 			list: {
 				type: Array,
-				default() {
+				default () {
 					return []
 				},
 			}
 		},
 		data() {
 			return {
+				activeIndex: 0
 			};
+		},
+		methods: {
+			handleClick: function(item, index) {
+				this.activeIndex = index
+			}
 		}
 	}
 </script>
@@ -51,7 +58,11 @@
 					padding: 0 10px;
 					font-size: 14px;
 					color: #333333;
+					&.active {
+						color: $main-color;
+					}
 				}
+				
 			}
 		}
 

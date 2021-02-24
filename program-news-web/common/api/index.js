@@ -1,10 +1,18 @@
-import request from '../../utils/http.js'
+// 导出所有的api
+const requireApi = require.context(
+	// 搜索的目录
+	'.',
+	// 是否搜索子目录
+	false,
+	// 搜索的文件
+	/.js$/
+)
 
-const getAllLabel = (data) => {
-	return request({
-		url: "http://localhost:8081/label/all",
-		data,
-	})
-}
+let modules = {}
 
-export default {getAllLabel};
+requireApi.keys().forEach(key => {
+	if(key === './index.js') return
+	Object.assign(modules, requireApi(key))
+})
+
+export default modules
