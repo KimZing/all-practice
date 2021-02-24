@@ -14,11 +14,10 @@
 			}
 		},
 		onLoad() {
-			uni.request({
-				url: "http://localhost:8081/label/all",
-				success: (res) => {
-					this.labels = res.data.data
-				}
+			this.$api.getAllLabel()
+			.then((data) => this.labels = data)
+			.catch((err)=> {
+				console.log(err);
 			})
 		},
 		methods: {
