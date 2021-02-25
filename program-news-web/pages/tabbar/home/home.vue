@@ -1,8 +1,10 @@
 <template>
 	<view>
 		<navbar></navbar>
-		<tab :list="labels"></tab>
-		<view v-for="(i,index) in 100" :key="index">{{i}}</view>
+		<tab :list="labels" @clickTab="clickTab"></tab>
+		<scroll-list>
+			<view v-for="(i,index) in 100" :key="index">{{i}}</view>
+		</scroll-list>
 	</view>
 </template>
 
@@ -15,13 +17,15 @@
 		},
 		onLoad() {
 			this.$api.getAllLabel()
-			.then((data) => this.labels = data)
-			.catch((err)=> {
-				console.log(err);
-			})
+				.then((data) => this.labels = data)
+				.catch((err) => {
+					console.log(err);
+				})
 		},
 		methods: {
-
+			clickTab: function(data) {
+				console.log(data)
+			}
 		}
 	}
 </script>

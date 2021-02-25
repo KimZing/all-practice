@@ -28,6 +28,7 @@
 		methods: {
 			handleClick: function(item, index) {
 				this.activeIndex = index
+				this.$emit("clickTab", {item, index})
 			}
 		}
 	}
