@@ -38,8 +38,8 @@
 	.tab {
 		display: flex;
 		width: 100%;
-		background-color: #FFFFFF;
 		border-bottom: 1px #f5f5f5 solid;
+		background-color: #FFFFFF;
 		box-sizing: border-box;
 
 		.tab-scroll {
@@ -48,10 +48,10 @@
 			box-sizing: border-box;
 
 			.scroll-content {
-				height: 45px;
 				display: flex;
 				align-items: center;
 				flex-wrap: nowrap;
+				height: 45px;
 				box-sizing: border-box;
 
 				.scroll-item {
@@ -59,11 +59,12 @@
 					padding: 0 10px;
 					font-size: 14px;
 					color: #333333;
+
 					&.active {
 						color: $main-color;
 					}
 				}
-				
+
 			}
 		}
 
