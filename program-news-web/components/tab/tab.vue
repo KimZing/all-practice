@@ -2,11 +2,12 @@
 	<view class="tab">
 		<scroll-view scroll-x class="tab-scroll">
 			<view class="scroll-content">
-				<view class="scroll-item" :class="{active: activeIndex === index}"
-				v-for="item,index in list" :key="index" @click="handleClick(item, index)">{{item.name}}</view>
+				<view class="scroll-item" :class="{active: activeIndex === index}" v-for="item,index in list" :key="index" @click="handleClick(item, index)">{{item.name}}</view>
 			</view>
 		</scroll-view>
-		<uni-icons class="tab-icons" type="gear" size="26" color="#666666"></uni-icons>
+		<view class="tab-icons" >
+			<uni-icons type="gear" size="26" color="#666666"></uni-icons>
+		</view>
 	</view>
 </template>
 
@@ -28,7 +29,10 @@
 		methods: {
 			handleClick: function(item, index) {
 				this.activeIndex = index
-				this.$emit("clickTab", {item, index})
+				this.$emit("clickTab", {
+					item,
+					index
+				})
 			}
 		}
 	}
@@ -37,6 +41,7 @@
 <style lang="scss">
 	.tab {
 		display: flex;
+		flex-flow: row nowrap;
 		width: 100%;
 		border-bottom: 1px #f5f5f5 solid;
 		background-color: #FFFFFF;
@@ -45,6 +50,8 @@
 		.tab-scroll {
 			flex: 1;
 			overflow: hidden;
+			// 特别注意，父元素的宽度问题
+			width: 0px;
 			box-sizing: border-box;
 
 			.scroll-content {
