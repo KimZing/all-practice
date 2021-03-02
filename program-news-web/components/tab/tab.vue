@@ -51,7 +51,7 @@
 			flex: 1;
 			overflow: hidden;
 			// 特别注意，父元素的宽度问题
-			width: 0px;
+			// width: 0;
 			box-sizing: border-box;
 
 			.scroll-content {

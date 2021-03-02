@@ -33,3 +33,4 @@ build/
 ### VS Code ###
 .vscode/
 .hbuilderx
+/program-news-web/unpackage/

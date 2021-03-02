@@ -3,9 +3,7 @@
 		<navbar></navbar>
 		<tab :list="labels" @clickTab="clickTab"></tab>
 		<list-scroll>
-			<view v-for="(i,index) in 100" :key="index">
-				{{i}}
-			</view>
+			<card v-for="item,index in 8" :key="index"></card>
 		</list-scroll>
 	</view>
 </template>
@@ -43,6 +41,8 @@
 		flex-direction: column;
 		flex: 1;
 		border: 1px red solid;
+		// 这个地方也同时解决了tab的溢出问题
+		overflow: hidden;
 
 	}
 </style>
