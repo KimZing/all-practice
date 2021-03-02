@@ -40,7 +40,6 @@
 		display: flex;
 		flex-direction: column;
 		flex: 1;
-		border: 1px red solid;
 		// 这个地方也同时解决了tab的溢出问题
 		overflow: hidden;
 

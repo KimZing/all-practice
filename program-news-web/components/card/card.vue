@@ -4,9 +4,16 @@
 			<image src="../../static/home-select.png" mode="aspectFill"></image>
 		</view>
 		<view class="card-content">
-			<view class="content-title">标题</view>
-			<view class="content-label">
-				<view class="label-item" v-for="label, index in 3" :key="index">标签{{label}}</view>
+			<view class="content-title">
+				<text>标题标题标题标题</text>
+			</view>
+			<view class="content-footer">
+				<view class="content-label">
+					<view class="label-item" v-for="label, index in 2" :key="index">标签{{label}}</view>
+				</view>
+				<view class="content-read">
+					<view class="content-read-number">120浏览</view>
+				</view>
 			</view>
 		</view>
 	</view>
@@ -16,29 +23,85 @@
 	export default {
 		data() {
 			return {
-				
+
 			};
 		}
 	}
 </script>
 
 <style lang="scss">
-.card {
-	display: flex;
-	padding: 10px;
-	margin: 10px;
-	border-radius: 5px;
-	box-shadow: 0 0 5px 1px rgba($color: #000000, $alpha:0.1);
-	box-sizing: border-box;
-	.card-image {
-		width: 60px;
-		height: 60px;
+	.card {
+		display: flex;
+		padding: 10px;
+		margin: 10px;
 		border-radius: 5px;
-		overflow: hidden;
-		image {
+		box-shadow: 0 0 5px 1px rgba($color: #000000, $alpha:0.1);
+		box-sizing: border-box;
+
+		.card-image {
+			flex-shrink: 0;
+			display: flex;
+			align-items: center;
+			width: 60px;
+			height: 60px;
+			border-radius: 5px;
+			overflow: hidden;
+
+			image {
+				width: 100%;
+				height: 100%;
+			}
+		}
+
+		.card-content {
+			display: flex;
+			flex-direction: column;
 			width: 100%;
-			height: 100%;
+			justify-content: space-between;
+			margin-left: 10px;
+
+			text {
+				width: 100%;
+				overflow: hidden;
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
+				-webkit-line-clamp: 2;
+				-ms-text-overflow: ellipsis;
+				margin-bottom: 10px;
+				font-size: 14px;
+				font-weight: 400;
+				color: #333;
+				line-height: 1.2;
+			}
+
+			.content-footer {
+				display: flex;
+				justify-content: space-between;
+				.content-label {
+					display: flex;
+					align-items: center;
+					.label-item {
+						flex-shrink: 0;
+						margin-right: 5px;
+						padding: 0 5px;
+						font-size: 14px;
+						border: 1px $main-color solid;
+						border-radius: 5px;
+						color: $main-color;
+					}
+				}
+
+				.content-read {
+					display:   flex;
+					justify-content: space-between;
+					align-items: center;
+					.content-read-number {
+						flex-shrink: 0;
+						color: #999999;
+						margin-left: 5px;
+					}
+				}
+			}
 		}
 	}
-}
 </style>
