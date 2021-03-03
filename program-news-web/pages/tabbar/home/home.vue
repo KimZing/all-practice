@@ -1,10 +1,8 @@
 <template>
 	<view class="home">
 		<navbar></navbar>
-		<tab :list="labels" @clickTab="clickTab"></tab>
-		<list-scroll>
-			<card v-for="item,index in 8" :key="index"></card>
-		</list-scroll>
+		<tab :list="labels" @clickTab="clickTab" :current="current"></tab>
+		<swiper-list :tab="labels" :current="current" @changeSwiper="changeSwiper"></swiper-list>
 	</view>
 </template>
 
@@ -12,7 +10,8 @@
 	export default {
 		data() {
 			return {
-				labels: []
+				labels: [],
+				current: 0
 			}
 		},
 		onLoad() {
@@ -24,7 +23,10 @@
 		},
 		methods: {
 			clickTab: function(data) {
-				console.log(data)
+				this.current = data.index
+			},
+			changeSwiper(data) {
+				this.current = data.current
 			}
 		}
 	}
@@ -42,6 +44,5 @@
 		flex: 1;
 		// 这个地方也同时解决了tab的溢出问题
 		overflow: hidden;
-
 	}
 </style>

@@ -19,6 +19,15 @@
 				default () {
 					return []
 				},
+			},
+			current: {
+				type: Number,
+				default: 0,
+			}
+		},
+		watch: {
+			current: function(newValue) {
+				this.activeIndex = newValue
 			}
 		},
 		data() {

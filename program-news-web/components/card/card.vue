@@ -1,18 +1,58 @@
 <template>
-	<view class="card">
-		<view class="card-image">
-			<image src="../../static/home-select.png" mode="aspectFill"></image>
-		</view>
-		<view class="card-content">
-			<view class="content-title">
-				<text>标题标题标题标题</text>
+	<view>
+		<view v-if="mode === 'basic'" class="card">
+			<view class="card-image">
+				<image src="../../static/home-select.png" mode="aspectFill"></image>
 			</view>
-			<view class="content-footer">
-				<view class="content-label">
-					<view class="label-item" v-for="label, index in 2" :key="index">标签{{label}}</view>
+			<view class="card-content">
+				<view class="content-title">
+					<text>标题标题标题标题</text>
 				</view>
-				<view class="content-read">
-					<view class="content-read-number">120浏览</view>
+				<view class="content-footer">
+					<view class="content-label">
+						<view class="label-item" v-for="(label, index) in 2" :key="index">标签{{label}}</view>
+					</view>
+					<view class="content-read">
+						<view class="content-read-number">120浏览</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view v-if="mode === 'multi'" class="card">
+			<view class="card-content">
+				<view class="content-title">
+					<text>标题标题标题标题</text>
+				</view>
+				<view class="content-image">
+					<view class="card-image" v-for="(item,index) in 8" :key="index">
+						<image src="../../static/home-select.png" mode="aspectFill"></image>
+					</view>
+				</view>
+				<view class="content-footer">
+					<view class="content-label">
+						<view class="label-item" v-for="(label, index) in 2" :key="index">标签{{label}}</view>
+					</view>
+					<view class="content-read">
+						<view class="content-read-number">120浏览</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view v-if="mode === 'main'" class="card">
+			<view class="card-content">
+				<view class="content-title">
+					<text>标题标题标题标题</text>
+				</view>
+					<view class="main-image">
+						<image src="../../static/home-select.png" mode="aspectFill"></image>
+					</view>
+				<view class="content-footer">
+					<view class="content-label">
+						<view class="label-item" v-for="(label, index) in 2" :key="index">标签{{label}}</view>
+					</view>
+					<view class="content-read">
+						<view class="content-read-number">120浏览</view>
+					</view>
 				</view>
 			</view>
 		</view>
@@ -21,6 +61,13 @@
 
 <script>
 	export default {
+		props: {
+			mode: {
+				type: String,
+				default: 'basic',
+				required: false,
+			}
+		},
 		data() {
 			return {
 
@@ -77,9 +124,11 @@
 			.content-footer {
 				display: flex;
 				justify-content: space-between;
+
 				.content-label {
 					display: flex;
 					align-items: center;
+
 					.label-item {
 						flex-shrink: 0;
 						margin-right: 5px;
@@ -92,15 +141,37 @@
 				}
 
 				.content-read {
-					display:   flex;
+					display: flex;
 					justify-content: space-between;
 					align-items: center;
+
 					.content-read-number {
 						flex-shrink: 0;
 						color: #999999;
 						margin-left: 5px;
 					}
 				}
+			}
+		}
+		.content-image {
+			display: flex;
+			margin-bottom: 10px;
+			overflow: hidden;
+			.card-image {
+				margin-right: 10px;
+			}
+		}
+		.main-image {
+			flex-shrink: 0;
+			width: 100%;
+			height: 120px;
+			margin-bottom: 10px;
+			border-radius: 5px;
+			overflow: hidden;
+			box-sizing: border-box;
+			image {
+				width: 100%;
+				height: 100%;
 			}
 		}
 	}
