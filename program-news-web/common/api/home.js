@@ -6,3 +6,9 @@ export const getAllLabel = (data) => {
 		data,
 	})
 }
+
+export const getArticle = () => {
+	return request({
+		url: "http://localhost:8081/article/list"
+	})
+}
