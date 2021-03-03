@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kimzing.news.repository.article.ArticleMapper">
+    <sql id="all_column">id,deleted,creator,modifier,create_time,modify_time,title,content,images,read_number,mode</sql>
+    <sql id="po_column">title,content,images,read_number,mode</sql>
+
+    <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        INSERT INTO `article`(<include refid="po_column"></include>)
+        VALUES(#{title},#{content},#{images},#{readNumber},#{mode});
+    </insert>
+
+    <insert id="insertBatch">
+        INSERT INTO `article` (<include refid="po_column"></include>) VALUES
+        <foreach item="item" collection="list" separator=",">
+            (#{item.title},#{item.content},#{item.images},#{item.readNumber},#{item.mode})
+        </foreach>
+    </insert>
+
+    <update id="update">
+        UPDATE `article`
+        <set>
+            <if test="title != null">title = #{title},</if>
+            <if test="content != null">content = #{content},</if>
+            <if test="images != null">images = #{images},</if>
+            <if test="readNumber != null">read_number = #{readNumber},</if>
+            <if test="mode != null">mode = #{mode},</if>
+        </set>
+        WHERE id = #{id} AND deleted = 0;
+    </update>
+
+    <delete id="delete">
+        UPDATE `article` SET deleted = 1 WHERE id = #{id}
+    </delete>
+
+    <select id="selectById" resultType="com.kimzing.news.domain.article.ArticleBO">
+        SELECT <include refid="all_column"></include> FROM `article` WHERE id = #{id} AND deleted = 0
+    </select>
+
+    <select id="selectPage" resultType="com.kimzing.news.domain.article.ArticleBO">
+        SELECT <include refid="all_column"></include> FROM `article`
+        <where>
+            AND deleted = 0
+            <if test="query != null">
+                <if test="query.title != null">AND title = #{query.title}</if>
+                <if test="query.content != null">AND content = #{query.content}</if>
+                <if test="query.images != null">AND images = #{query.images}</if>
+                <if test="query.readNumber != null">AND read_number = #{query.readNumber}</if>
+                <if test="query.mode != null">AND mode = #{query.mode}</if>
+            </if>
+        </where>
+    </select>
+
+</mapper>
