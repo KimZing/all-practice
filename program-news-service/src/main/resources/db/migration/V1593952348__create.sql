@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `article`
     `title`            varchar(50)   NOT NULL COMMENT '文章标题',
     `content`          text          NOT NULL COMMENT '文章内容',
     `images`           varchar(2000) NOT NULL COMMENT '文章图片',
-    `classify`         varchar(50)            DEFAULT NULL COMMENT '分类信息',
+    `classify`         varchar(200)            DEFAULT NULL COMMENT '分类信息',
     `mode`             varchar(50)   NOT NULL DEFAULT 'basic' COMMENT '卡片模式',
     `read_count`       int(10)                DEFAULT 0 COMMENT '阅读量',
     `collection_count` int(10)                DEFAULT 0 COMMENT '文章集合',

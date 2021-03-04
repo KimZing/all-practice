@@ -22,7 +22,7 @@
 				})
 		},
 		methods: {
-			clickTab: function(data) {
+			clickTab(data) {
 				this.current = data.index
 			},
 			changeSwiper(data) {

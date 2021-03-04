@@ -1,17 +1,18 @@
 package com.kimzing.news.controller.article;
 
 
-import org.springframework.web.bind.annotation.*;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import com.kimzing.web.resolver.json.JsonParam;
+import com.kimzing.news.domain.article.ArticleBO;
+import com.kimzing.news.domain.article.ArticleQueryDTO;
+import com.kimzing.news.domain.article.ArticleSaveDTO;
+import com.kimzing.news.domain.article.ArticleUpdateDTO;
+import com.kimzing.news.service.article.ArticleService;
 import com.kimzing.utils.page.PageParam;
 import com.kimzing.utils.page.PageResult;
-import com.kimzing.news.service.article.ArticleService;
-import com.kimzing.news.domain.article.*;
-import javax.annotation.Resource;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RestController;
+import javax.annotation.Resource;
 
 /**
  * 文章信息接口层.
@@ -52,8 +53,8 @@ public class ArticleController {
     }
 
     @ApiOperation(value = "分页条件查询文章信息")
-    @GetMapping("/list")
-    public PageResult<ArticleBO> listPage(@JsonParam(required = false) ArticleQueryDTO articleQueryDTO, @ModelAttribute PageParam pageParam) {
+    @PostMapping("/list")
+    public PageResult<ArticleBO> listPage(@RequestBody( required = false) ArticleQueryDTO articleQueryDTO, @ModelAttribute PageParam pageParam) {
         return articleService.listPage(articleQueryDTO, pageParam);
     }
 

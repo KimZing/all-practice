@@ -2,18 +2,18 @@
 	<view>
 		<view v-if="mode === 'basic'" class="card">
 			<view class="card-image">
-				<image src="../../static/home-select.png" mode="aspectFill"></image>
+				<image :src="item.images[0]" mode="aspectFill"></image>
 			</view>
 			<view class="card-content">
 				<view class="content-title">
-					<text>标题标题标题标题</text>
+					<text>{{item.title}}</text>
 				</view>
 				<view class="content-footer">
 					<view class="content-label">
-						<view class="label-item" v-for="(label, index) in 2" :key="index">标签{{label}}</view>
+						<view class="label-item" v-for="(label, index) in item.classify" :key="index">{{label}}</view>
 					</view>
 					<view class="content-read">
-						<view class="content-read-number">120浏览</view>
+						<view class="content-read-number">{{item.readCount}}浏览</view>
 					</view>
 				</view>
 			</view>
@@ -21,19 +21,19 @@
 		<view v-if="mode === 'multi'" class="card">
 			<view class="card-content">
 				<view class="content-title">
-					<text>标题标题标题标题</text>
+					<text>{{item.title}}</text>
 				</view>
 				<view class="content-image">
-					<view class="card-image" v-for="(item,index) in 8" :key="index">
-						<image src="../../static/home-select.png" mode="aspectFill"></image>
+					<view class="card-image" v-for="(image,index) in item.images" :key="index">
+						<image :src="image" mode="aspectFill"></image>
 					</view>
 				</view>
 				<view class="content-footer">
 					<view class="content-label">
-						<view class="label-item" v-for="(label, index) in 2" :key="index">标签{{label}}</view>
+						<view class="label-item" v-for="(label, index) in item.classify" :key="index">{{label}}</view>
 					</view>
 					<view class="content-read">
-						<view class="content-read-number">120浏览</view>
+						<view class="content-read-number">{{item.readCount}}浏览</view>
 					</view>
 				</view>
 			</view>
@@ -41,17 +41,17 @@
 		<view v-if="mode === 'main'" class="card">
 			<view class="card-content">
 				<view class="content-title">
-					<text>标题标题标题标题</text>
+					<text>{{item.title}}</text>
 				</view>
 					<view class="main-image">
-						<image src="../../static/home-select.png" mode="aspectFill"></image>
+						<image :src="item.images[0]" mode="aspectFill"></image>
 					</view>
 				<view class="content-footer">
 					<view class="content-label">
-						<view class="label-item" v-for="(label, index) in 2" :key="index">标签{{label}}</view>
+						<view class="label-item" v-for="(label, index) in item.classify" :key="index">{{label}}</view>
 					</view>
 					<view class="content-read">
-						<view class="content-read-number">120浏览</view>
+						<view class="content-read-number">{{item.readCount}}浏览</view>
 					</view>
 				</view>
 			</view>
@@ -66,6 +66,12 @@
 				type: String,
 				default: 'basic',
 				required: false,
+			},
+			item: {
+				type: Object,
+				default() {
+					return {}
+				}
 			}
 		},
 		data() {

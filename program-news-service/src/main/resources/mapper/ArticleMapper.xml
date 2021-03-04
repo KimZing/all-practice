@@ -50,7 +50,7 @@
                 <if test="query.title != null">AND title = #{query.title}</if>
                 <if test="query.content != null">AND content = #{query.content}</if>
                 <if test="query.images != null">AND images = #{query.images}</if>
-                <if test="query.classify != null">AND classify = #{query.classify}</if>
+                <if test="query.classify != null">AND classify like "%"#{query.classify}"%"</if>
                 <if test="query.mode != null">AND mode = #{query.mode}</if>
                 <if test="query.readCount != null">AND read_count = #{query.readCount}</if>
                 <if test="query.collectionCount != null">AND collection_count = #{query.collectionCount}</if>

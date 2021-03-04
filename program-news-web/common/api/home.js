@@ -7,8 +7,10 @@ export const getAllLabel = (data) => {
 	})
 }
 
-export const getArticle = () => {
+export const getArticleList = (label) => {
 	return request({
-		url: "http://localhost:8081/article/list"
+		url: "http://localhost:8081/article/list",
+		method: "POST",
+		data: {classify: label}
 	})
 }

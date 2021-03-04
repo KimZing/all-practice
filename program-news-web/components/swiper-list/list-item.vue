@@ -1,19 +1,20 @@
 <template>
 	<list-scroll>
-		<card mode="basic"></card>
-		<card mode="basic"></card>
-		<card mode="multi"></card>
-		<card mode="main"></card>
-		<card mode="multi"></card>
-		<card mode="main"></card>
-		<card mode="basic"></card>
-		<card mode="basic"></card>
-		<card mode="basic"></card>
-		<card mode="basic"></card>
+		<card :mode="item.mode" v-for="item in list" :key="item.id" :item="item"></card>
 	</list-scroll>
 </template>
 
 <script>
+	export default {
+		props: {
+			list: {
+				type: Array,
+				default() {
+					return []
+				}
+			}
+		}
+	}
 </script>
 
 <style>

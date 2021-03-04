@@ -1,11 +1,13 @@
 const request = (options) => {
 	const {
 		url,
+		method,
 		data
 	} = options
 	return new Promise((resolve, reject) => {
 		uni.request({
 			url,
+			method,
 			data,
 			success: (res) => {
 				if (res.data.code === '0') {
