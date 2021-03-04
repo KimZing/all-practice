@@ -12,6 +12,9 @@
 	// MARK 千万不能和自有组件重名
 	import listItem from './list-item.vue'
 	export default {
+		created: () => {
+			this.$api.getArticle().then((data) => console.log(data))
+		},
 		components: {
 			listItem
 		},

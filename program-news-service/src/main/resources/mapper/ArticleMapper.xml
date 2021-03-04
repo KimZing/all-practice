@@ -1,29 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kimzing.news.repository.article.ArticleMapper">
-    <sql id="all_column">id,deleted,creator,modifier,create_time,modify_time,title,content,images,read_number,mode</sql>
-    <sql id="po_column">title,content,images,read_number,mode</sql>
+    <sql id="all_column">id,deleted,creator,modifier,create_time,modify_time,author_id,title,content,images,classify,mode,read_count,collection_count,comment_count,thumbs_up_count</sql>
+    <sql id="po_column">author_id,title,content,images,classify,mode,read_count,collection_count,comment_count,thumbs_up_count</sql>
 
     <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
         INSERT INTO `article`(<include refid="po_column"></include>)
-        VALUES(#{title},#{content},#{images},#{readNumber},#{mode});
+        VALUES(#{authorId},#{title},#{content},#{images},#{classify},#{mode},#{readCount},#{collectionCount},#{commentCount},#{thumbsUpCount});
     </insert>
 
     <insert id="insertBatch">
         INSERT INTO `article` (<include refid="po_column"></include>) VALUES
         <foreach item="item" collection="list" separator=",">
-            (#{item.title},#{item.content},#{item.images},#{item.readNumber},#{item.mode})
+            (#{item.authorId},#{item.title},#{item.content},#{item.images},#{item.classify},#{item.mode},#{item.readCount},#{item.collectionCount},#{item.commentCount},#{item.thumbsUpCount})
         </foreach>
     </insert>
 
     <update id="update">
         UPDATE `article`
         <set>
+            <if test="authorId != null">author_id = #{authorId},</if>
             <if test="title != null">title = #{title},</if>
             <if test="content != null">content = #{content},</if>
             <if test="images != null">images = #{images},</if>
-            <if test="readNumber != null">read_number = #{readNumber},</if>
+            <if test="classify != null">classify = #{classify},</if>
             <if test="mode != null">mode = #{mode},</if>
+            <if test="readCount != null">read_count = #{readCount},</if>
+            <if test="collectionCount != null">collection_count = #{collectionCount},</if>
+            <if test="commentCount != null">comment_count = #{commentCount},</if>
+            <if test="thumbsUpCount != null">thumbs_up_count = #{thumbsUpCount},</if>
         </set>
         WHERE id = #{id} AND deleted = 0;
     </update>
@@ -41,11 +46,16 @@
         <where>
             AND deleted = 0
             <if test="query != null">
+                <if test="query.authorId != null">AND author_id = #{query.authorId}</if>
                 <if test="query.title != null">AND title = #{query.title}</if>
                 <if test="query.content != null">AND content = #{query.content}</if>
                 <if test="query.images != null">AND images = #{query.images}</if>
-                <if test="query.readNumber != null">AND read_number = #{query.readNumber}</if>
+                <if test="query.classify != null">AND classify = #{query.classify}</if>
                 <if test="query.mode != null">AND mode = #{query.mode}</if>
+                <if test="query.readCount != null">AND read_count = #{query.readCount}</if>
+                <if test="query.collectionCount != null">AND collection_count = #{query.collectionCount}</if>
+                <if test="query.commentCount != null">AND comment_count = #{query.commentCount}</if>
+                <if test="query.thumbsUpCount != null">AND thumbs_up_count = #{query.thumbsUpCount}</if>
             </if>
         </where>
     </select>

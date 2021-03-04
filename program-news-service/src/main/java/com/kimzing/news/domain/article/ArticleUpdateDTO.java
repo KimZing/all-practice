@@ -14,7 +14,7 @@ import lombok.experimental.Accessors;
  * 文章信息更新
  *
  * @author KimZing
- * @since 2021-03-03
+ * @since 2021-03-04
  */
 @Data
 @Accessors(chain = true)
@@ -26,6 +26,9 @@ public class ArticleUpdateDTO implements Serializable {
     @ApiModelProperty(value = "文章信息ID")
     private Integer id;
 
+    @ApiModelProperty(value = "作者信息")
+    private Integer authorId;
+
     @ApiModelProperty(value = "文章标题")
     private String title;
 
@@ -35,10 +38,22 @@ public class ArticleUpdateDTO implements Serializable {
     @ApiModelProperty(value = "文章图片")
     private String images;
 
-    @ApiModelProperty(value = "阅读量")
-    private Integer readNumber;
+    @ApiModelProperty(value = "分类信息")
+    private String classify;
 
     @ApiModelProperty(value = "卡片模式")
     private String mode;
+
+    @ApiModelProperty(value = "阅读量")
+    private Integer readCount;
+
+    @ApiModelProperty(value = "文章集合")
+    private Integer collectionCount;
+
+    @ApiModelProperty(value = "评论数")
+    private Integer commentCount;
+
+    @ApiModelProperty(value = "点赞量")
+    private Integer thumbsUpCount;
 
 }

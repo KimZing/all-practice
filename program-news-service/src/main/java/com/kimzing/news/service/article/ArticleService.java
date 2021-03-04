@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
  * 文章信息 服务接口
  *
  * @author KimZing
- * @since 2021-03-03
+ * @since 2021-03-04
  */
 public interface ArticleService {
 
