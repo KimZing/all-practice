@@ -19,7 +19,7 @@
 			</view>
 		</view>
 		<view v-if="mode === 'multi'" class="card">
-			<view class="card-content">
+			<view class="card-content multi-card-content">
 				<view class="content-title">
 					<text>{{item.title}}</text>
 				</view>
@@ -39,7 +39,7 @@
 			</view>
 		</view>
 		<view v-if="mode === 'main'" class="card">
-			<view class="card-content">
+			<view class="card-content main-card-content">
 				<view class="content-title">
 					<text>{{item.title}}</text>
 				</view>
@@ -170,7 +170,7 @@
 		.main-image {
 			flex-shrink: 0;
 			width: 100%;
-			height: 120px;
+			height: 80px;
 			margin-bottom: 10px;
 			border-radius: 5px;
 			overflow: hidden;
@@ -180,5 +180,11 @@
 				height: 100%;
 			}
 		}
+		 .main-card-content {
+			 margin-left: 0;
+		 }
+		 .multi-card-content {
+			 margin-left: 0;
+		 }
 	}
 </style>

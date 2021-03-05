@@ -16,7 +16,10 @@
 		},
 		onLoad() {
 			this.$api.getAllLabel()
-				.then((data) => this.labels = data)
+				.then((data) => {
+					data.unshift({name: "全部"})
+					this.labels = data
+				})
 				.catch((err) => {
 					console.log(err);
 				})

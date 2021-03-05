@@ -55,7 +55,15 @@
 				this.getArticleList(current)
 			},
 			getArticleList(current) {
-				this.$api.getArticleList(this.tab[current].name).then(res => {
+				// 处理全部标签
+				let labelName = ""
+				if(current !== 0) {
+					labelName = this.tab[current].name
+				}
+				
+				if(this.cacheList[current] && this.cacheList[current].length > 0) {return}
+				
+				this.$api.getArticleList(labelName).then(res => {
 					let listTemp = res.list.map(l => {
 						l.images = l.images.split(",");
 						l.classify = l.classify.split(",")
