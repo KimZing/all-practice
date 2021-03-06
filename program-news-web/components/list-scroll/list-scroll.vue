@@ -1,6 +1,6 @@
 <template>
 	<view class="scroll">
-		<scroll-view class="list-scroll" scroll-y>
+		<scroll-view class="list-scroll" scroll-y @scrolltolower="loadMore">
 			<view>
 				<slot></slot>
 			</view>
@@ -14,6 +14,11 @@
 			return {
 
 			};
+		},
+		methods: {
+			loadMore() {
+				this.$emit("loadMore")
+			}
 		}
 	}
 </script>

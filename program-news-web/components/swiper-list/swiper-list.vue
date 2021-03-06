@@ -2,7 +2,7 @@
 	<view class="swiper-page">
 		<swiper class="swiper" @change="changeSwiper" :current="current">
 			<swiper-item v-for="(item, index) in tab" :key="index" class="swiper-item">
-				<listItem :list="cacheList[index]"></listItem>
+				<listItem :list="cacheList[index]" @loadMore="loadMore" :load="cacheLoad[index]"></listItem>
 			</swiper-item>
 		</swiper>
 	</view>
@@ -19,7 +19,7 @@
 		// },
 		watch: {
 			"tab": function(newVal) {
-				if(newVal.length === 0) return
+				if (newVal.length === 0) return
 				this.getArticleList(0)
 			}
 		},
@@ -43,32 +43,67 @@
 				// 直接赋值到当前集合，会导致每次页面刷新都会卡顿，可以使用缓存数据(一个map<String, List>)的机制来缓存之前的数据
 				list: [],
 				cacheList: {},
+				cacheLoad: {},
+				pageSize: 8,
 			};
 		},
 		methods: {
+			loadMore() {
+				this.cacheLoad[this.current].pageNum++
+				
+				// 如果没有更多数据了，就不继续请求数据了
+				if(this.cacheLoad[this.current].status === 'noMore') {
+					return
+				}
+				
+				this.getArticleList(this.current)
+			},
 			changeSwiper(data) {
 				const current = data.detail.current
 				this.$emit('changeSwiper', {
 					current
 				})
+				// 如果有缓存，则不去重复请求
+				if (this.cacheList[current] && this.cacheList[current].length > 0) {
+					return
+				}
 				// 请求当前标签下的数据
 				this.getArticleList(current)
 			},
 			getArticleList(current) {
+				// 初始化当前页数
+				if (!this.cacheLoad[current]) {
+					this.cacheLoad[current] = {
+						pageNum: 1,
+						status: "loading"
+					}
+				}
 				// 处理全部标签
 				let labelName = ""
-				if(current !== 0) {
+				if (current !== 0) {
 					labelName = this.tab[current].name
 				}
-				
-				if(this.cacheList[current] && this.cacheList[current].length > 0) {return}
-				
-				this.$api.getArticleList(labelName).then(res => {
+
+				this.$api.getArticleList({
+					classify: labelName,
+					pageSize: this.pageSize,
+					pageNum: this.cacheLoad[this.current].pageNum
+				}).then(res => {
 					let listTemp = res.list.map(l => {
 						l.images = l.images.split(",");
 						l.classify = l.classify.split(",")
 						return l;
 					})
+					// 如果没有更过数据了，那么修改当前的load组件状态
+					if (listTemp.length === 0) {
+						let oldLoad = {status: "noMore", pageNum: this.cacheLoad[current].pageNum}
+						this.$set(this.cacheLoad, current, oldLoad)
+						this.$forceUpdate()
+						return 
+					}
+					// 保留之前的数据
+					let oldList = this.cacheList[current] || []
+					listTemp = [...oldList, ...listTemp]
 					// 这里需要使用$set触发更新，不然更新完list，页面不会刷新
 					this.$set(this.cacheList, current, listTemp)
 				})

@@ -1,7 +1,7 @@
 <template>
-	<list-scroll>
+	<list-scroll @loadMore="loadMore">
 		<card :mode="item.mode" v-for="item in list" :key="item.id" :item="item"></card>
-		<uni-load-more status="noMore"></uni-load-more>
+		<uni-load-more  v-if="list.length === 0 || list.length > 7" iconType="snow" :status="load.status"></uni-load-more>
 	</list-scroll>
 </template>
 
@@ -10,9 +10,22 @@
 		props: {
 			list: {
 				type: Array,
-				default() {
+				default () {
 					return []
 				}
+			},
+			load: {
+				type: Object,
+				default() {
+					return {
+						status: "loading"
+					}
+				}
+			}
+		},
+		methods: {
+			loadMore() {
+				this.$emit("loadMore")
 			}
 		}
 	}
