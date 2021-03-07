@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view @click="openDetail">
 		<view v-if="mode === 'basic'" class="card">
 			<view class="card-image">
 				<image :src="item.images[0]" mode="aspectFill"></image>
@@ -7,6 +7,7 @@
 			<view class="card-content">
 				<view class="content-title">
 					<text>{{item.title}}</text>
+					<like></like>
 				</view>
 				<view class="content-footer">
 					<view class="content-label">
@@ -22,6 +23,7 @@
 			<view class="card-content multi-card-content">
 				<view class="content-title">
 					<text>{{item.title}}</text>
+					<like></like>
 				</view>
 				<view class="content-image">
 					<view class="card-image" v-for="(image,index) in item.images" :key="index">
@@ -42,6 +44,7 @@
 			<view class="card-content main-card-content">
 				<view class="content-title">
 					<text>{{item.title}}</text>
+					<like></like>
 				</view>
 					<view class="main-image">
 						<image :src="item.images[0]" mode="aspectFill"></image>
@@ -78,6 +81,11 @@
 			return {
 
 			};
+		},
+		methods: {
+			openDetail() {
+				console.log("打开详情");
+			}
 		}
 	}
 </script>
@@ -112,19 +120,24 @@
 			width: 100%;
 			justify-content: space-between;
 			margin-left: 10px;
-
-			text {
-				width: 100%;
-				overflow: hidden;
-				display: -webkit-box;
-				-webkit-box-orient: vertical;
-				-webkit-line-clamp: 2;
-				-ms-text-overflow: ellipsis;
-				margin-bottom: 10px;
+			
+			
+			.content-title {
+				position: relative;
+				padding-right: 30px;
 				font-size: 14px;
-				font-weight: 400;
 				color: #333;
+				font-weight: 400;
 				line-height: 1.2;
+				text {
+					overflow: hidden;
+					width: 100%;
+					display: -webkit-box;
+					-webkit-box-orient: vertical;
+					-webkit-line-clamp: 2;
+					-ms-text-overflow: ellipsis;
+					margin-bottom: 10px;
+				}
 			}
 
 			.content-footer {
