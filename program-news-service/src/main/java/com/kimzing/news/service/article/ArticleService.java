@@ -37,4 +37,10 @@ public interface ArticleService {
      * 分页条件查询文章信息
      */
     PageResult<ArticleBO> listPage(ArticleQueryDTO articleQueryDTO, PageParam pageParam);
+
+    /**
+     * 更改文章收藏状态
+     * @param articleLikeDTO
+     */
+    void updateArticleLikeStatus(ArticleLikeDTO articleLikeDTO);
 }

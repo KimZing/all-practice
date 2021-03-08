@@ -21,3 +21,13 @@ export const getArticleList = (data) => {
 		}
 	})
 }
+
+export const updateArticleLike = (articleId) => {
+	return request({
+		url: "http://localhost:8081/article/like",
+		method: "PUT",
+		data: {
+			articleId
+		}
+	})
+}

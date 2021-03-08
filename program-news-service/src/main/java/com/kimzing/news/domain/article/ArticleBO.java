@@ -1,16 +1,13 @@
 package com.kimzing.news.domain.article;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import java.time.LocalDateTime;
-import java.math.BigDecimal;
 import com.kimzing.utils.po.AbstractBO;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.Serializable;
 import lombok.Data;
-import lombok.experimental.Accessors;
 import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
+
+import java.io.Serializable;
 
 /**
  * 文章信息业务对象
@@ -44,6 +41,9 @@ public class ArticleBO extends AbstractBO implements Serializable {
 
     @ApiModelProperty(value = "卡片模式")
     private String mode;
+
+    @ApiModelProperty(value = "是否收藏")
+    private Boolean isLike = false;
 
     @ApiModelProperty(value = "阅读量")
     private Integer readCount;

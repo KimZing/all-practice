@@ -16,6 +16,10 @@
         </foreach>
     </insert>
 
+    <insert id="addArticleLike" parameterType="com.kimzing.news.domain.article.ArticleLikeDTO">
+        INSERT INTO `r_user_like_article`(id, user_id, article_id) VALUES(null, #{userId}, #{articleId});
+    </insert>
+
     <update id="update">
         UPDATE `article`
         <set>
@@ -33,6 +37,10 @@
         WHERE id = #{id} AND deleted = 0;
     </update>
 
+    <delete id="removeArticleLike" parameterType="com.kimzing.news.domain.article.ArticleLikeDTO">
+        DELETE FROM `r_user_like_article` WHERE user_id = #{userId} AND article_id = #{articleId};
+    </delete>
+
     <delete id="delete">
         UPDATE `article` SET deleted = 1 WHERE id = #{id}
     </delete>
@@ -42,22 +50,27 @@
     </select>
 
     <select id="selectPage" resultType="com.kimzing.news.domain.article.ArticleBO">
-        SELECT <include refid="all_column"></include> FROM `article`
+        SELECT a.*, ru.article_id > 0 as `isLike` FROM `article` a LEFT JOIN `r_user_like_article`  ru ON a.id = ru.article_id
         <where>
-            AND deleted = 0
+            AND a.deleted = 0
             <if test="query != null">
-                <if test="query.userId != null">AND user_id = #{query.userId}</if>
-                <if test="query.title != null">AND title = #{query.title}</if>
-                <if test="query.content != null">AND content = #{query.content}</if>
-                <if test="query.images != null">AND images = #{query.images}</if>
-                <if test="query.classify != null">AND classify like "%"#{query.classify}"%"</if>
-                <if test="query.mode != null">AND mode = #{query.mode}</if>
-                <if test="query.readCount != null">AND read_count = #{query.readCount}</if>
-                <if test="query.collectionCount != null">AND collection_count = #{query.collectionCount}</if>
-                <if test="query.commentCount != null">AND comment_count = #{query.commentCount}</if>
-                <if test="query.thumbsUpCount != null">AND thumbs_up_count = #{query.thumbsUpCount}</if>
+                <if test="query.userId != null">AND a.user_id = #{query.userId}</if>
+                <if test="query.title != null">AND a.title = #{query.title}</if>
+                <if test="query.content != null">AND a.content = #{query.content}</if>
+                <if test="query.images != null">AND a.images = #{query.images}</if>
+                <if test="query.classify != null">AND a.classify like "%"#{query.classify}"%"</if>
+                <if test="query.mode != null">AND a.mode = #{query.mode}</if>
+                <if test="query.readCount != null">AND a.read_count = #{query.readCount}</if>
+                <if test="query.collectionCount != null">AND a.collection_count = #{query.collectionCount}</if>
+                <if test="query.commentCount != null">AND a.comment_count = #{query.commentCount}</if>
+                <if test="query.thumbsUpCount != null">AND a.thumbs_up_count = #{query.thumbsUpCount}</if>
             </if>
         </where>
+    </select>
+
+    <select id="selectArticleLike" resultType="com.kimzing.news.domain.article.ArticleLikeBO"
+            parameterType="com.kimzing.news.domain.article.ArticleLikeDTO">
+        SELECT id, article_id, user_id FROM `r_user_like_article` WHERE user_id = #{userId} AND article_id = #{articleId} LIMIT 1;
     </select>
 
 </mapper>

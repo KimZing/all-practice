@@ -46,4 +46,21 @@ public interface ArticleMapper {
      */
     IPage<ArticleBO> selectPage(Page<ArticleBO> page, @Param("query") ArticleQueryDTO articleQueryDTO);
 
+    /**
+     * 查询用户对某个文章的收藏信息
+     * @param articleLikeDTO
+     * @return
+     */
+    ArticleLikeBO selectArticleLike(ArticleLikeDTO articleLikeDTO);
+
+    /**
+     * 添加用户收藏
+     * @param articleLikeDTO
+     */
+    void addArticleLike(ArticleLikeDTO articleLikeDTO);
+
+    /**
+     * 取消用户收藏
+     */
+    void removeArticleLike(ArticleLikeDTO articleLikeDTO);
 }

@@ -1,10 +1,7 @@
 package com.kimzing.news.controller.article;
 
 
-import com.kimzing.news.domain.article.ArticleBO;
-import com.kimzing.news.domain.article.ArticleQueryDTO;
-import com.kimzing.news.domain.article.ArticleSaveDTO;
-import com.kimzing.news.domain.article.ArticleUpdateDTO;
+import com.kimzing.news.domain.article.*;
 import com.kimzing.news.service.article.ArticleService;
 import com.kimzing.utils.page.PageParam;
 import com.kimzing.utils.page.PageResult;
@@ -56,6 +53,12 @@ public class ArticleController {
     @PostMapping("/list")
     public PageResult<ArticleBO> listPage(@RequestBody( required = false) ArticleQueryDTO articleQueryDTO, @ModelAttribute PageParam pageParam) {
         return articleService.listPage(articleQueryDTO, pageParam);
+    }
+
+    @ApiOperation(value = "更改文章的收藏状态")
+    @PutMapping("/like")
+    public void updateArticleLikeStatus(@RequestBody ArticleLikeDTO articleLikeDTO) {
+        articleService.updateArticleLikeStatus(articleLikeDTO);
     }
 
 }

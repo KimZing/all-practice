@@ -1,19 +1,20 @@
 package com.kimzing.news.service.article.impl;
 
-import com.kimzing.news.repository.article.ArticleMapper;
-import com.kimzing.news.service.article.ArticleService;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.kimzing.news.repository.article.ArticlePO;
 import com.kimzing.news.domain.article.*;
+import com.kimzing.news.repository.article.ArticleMapper;
+import com.kimzing.news.repository.article.ArticlePO;
+import com.kimzing.news.service.article.ArticleService;
 import com.kimzing.utils.bean.BeanUtil;
 import com.kimzing.utils.page.PageParam;
 import com.kimzing.utils.page.PageResult;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import static com.kimzing.utils.page.MPPageUtil.convertPage;
-import static com.kimzing.utils.page.MPPageUtil.convertPageResult;
 
 import javax.annotation.Resource;
+
+import static com.kimzing.utils.page.MPPageUtil.convertPage;
+import static com.kimzing.utils.page.MPPageUtil.convertPageResult;
 
 /**
  * 文章信息 服务实现类
@@ -73,6 +74,20 @@ public class ArticleServiceImpl implements ArticleService {
     public PageResult<ArticleBO> listPage(ArticleQueryDTO articleQueryDTO, PageParam pageParam) {
         IPage<ArticleBO> articleBOPage = articleMapper.selectPage(convertPage(pageParam), articleQueryDTO);
         return convertPageResult(articleBOPage);
+    }
+
+    /**
+     * 更改文章收藏状态
+     * @param articleLikeDTO
+     */
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void updateArticleLikeStatus(ArticleLikeDTO articleLikeDTO) {
+        if(articleMapper.selectArticleLike(articleLikeDTO) != null) {
+            articleMapper.removeArticleLike(articleLikeDTO);
+            return;
+        }
+        articleMapper.addArticleLike(articleLikeDTO);
     }
 
 }
