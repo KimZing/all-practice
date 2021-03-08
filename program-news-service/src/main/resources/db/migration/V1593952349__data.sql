@@ -12,7 +12,7 @@ INSERT INTO `user`(id, username, avatar)
 VALUES (1, 'KimZing', '/static/avatar1.png');
 
 INSERT
-INTO `article`(id, user_id, title, content, images, classify, mode, read_count)
+INTO `article`(id, author_id, title, content, images, classify, mode, read_count)
 VALUES (1, 1, "Java从入门到精通然后到放弃", "世界上最好的语言", "/static/demo-normal4.gif,/static/demo-big.png,/static/demo-normal5.gif", 'Java,后端', 'basic', 100),
        (2, 1, "Go从入门到精通", "世界上最好的语言",
         "/static/demo-normal1.png,/static/demo-normal2.png,/static/demo-normal3.png,/static/demo-normal4.gif", 'Go,后端',

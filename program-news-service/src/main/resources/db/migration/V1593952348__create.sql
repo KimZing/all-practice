@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `user`
 CREATE TABLE IF NOT EXISTS `article`
 (
     `id`               int(11)       NOT NULL AUTO_INCREMENT COMMENT 'ID',
-    `user_id`          int(11)       NOT NULL COMMENT '作者信息',
+    `author_id`          int(11)       NOT NULL COMMENT '作者ID',
     `title`            varchar(50)   NOT NULL COMMENT '文章标题',
     `content`          text          NOT NULL COMMENT '文章内容',
     `images`           varchar(2000) NOT NULL COMMENT '文章图片',
@@ -65,7 +65,8 @@ CREATE TABLE IF NOT EXISTS `r_user_like_article`
     `modifier`    varchar(20)       DEFAULT NULL COMMENT '更新人',
     `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     `modify_time` datetime NOT NUll DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
-    PRIMARY KEY (`id`)
+    PRIMARY KEY (`id`),
+    UNIQUE KEY user_article(`user_id`, `article_id`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_general_ci

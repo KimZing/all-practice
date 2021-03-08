@@ -21,8 +21,11 @@ public class ArticleQueryDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
 
-    @ApiModelProperty(value = "作者信息")
+    @ApiModelProperty(value = "当前用户")
     private Integer userId;
+
+    @ApiModelProperty(value = "作者")
+    private Integer authorId;
 
     @ApiModelProperty(value = "文章标题")
     private String title;

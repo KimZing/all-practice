@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kimzing.news.repository.article.ArticleMapper">
-    <sql id="all_column">id,deleted,creator,modifier,create_time,modify_time,user_id,title,content,images,classify,mode,read_count,collection_count,comment_count,thumbs_up_count</sql>
-    <sql id="po_column">user_id,title,content,images,classify,mode,read_count,collection_count,comment_count,thumbs_up_count</sql>
+    <sql id="all_column">id,deleted,creator,modifier,create_time,modify_time,author_id,title,content,images,classify,mode,read_count,collection_count,comment_count,thumbs_up_count</sql>
+    <sql id="po_column">author_id,title,content,images,classify,mode,read_count,collection_count,comment_count,thumbs_up_count</sql>
 
     <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
         INSERT INTO `article`(<include refid="po_column"></include>)
@@ -50,11 +50,11 @@
     </select>
 
     <select id="selectPage" resultType="com.kimzing.news.domain.article.ArticleBO">
-        SELECT a.*, ru.article_id > 0 as `isLike` FROM `article` a LEFT JOIN `r_user_like_article`  ru ON a.id = ru.article_id
+        SELECT a.*, ru.article_id > 0 as `isLike` FROM `article` a LEFT JOIN `r_user_like_article`  ru ON a.id = ru.article_id and ru.user_id = #{query.userId}
         <where>
             AND a.deleted = 0
             <if test="query != null">
-                <if test="query.userId != null">AND a.user_id = #{query.userId}</if>
+                <if test="query.authorId != null">AND a.author_id = #{query.authorId}</if>
                 <if test="query.title != null">AND a.title = #{query.title}</if>
                 <if test="query.content != null">AND a.content = #{query.content}</if>
                 <if test="query.images != null">AND a.images = #{query.images}</if>
