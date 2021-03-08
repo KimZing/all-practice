@@ -1,6 +1,6 @@
 <template>
 	<view class="icons" @click.stop="clickLike">
-		<uni-icons size="20" color="#F03799" :type="like?'heart-filled':'heart'"></uni-icons>
+		<uni-icons size="20" color="#F03737" :type="like?'heart-filled':'heart'"></uni-icons>
 	</view>
 </template>
 
@@ -31,6 +31,5 @@
 		right: 0;
 		width: 20px;
 		height: 20px;
-		border: 1px red solid;
 	}
 </style>

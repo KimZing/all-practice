@@ -1,14 +1,11 @@
 package com.kimzing.news.domain.article;
 
-import java.time.LocalDateTime;
-import java.math.BigDecimal;
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.Serializable;
 import lombok.Data;
 import lombok.experimental.Accessors;
+
+import java.io.Serializable;
 
 /**
  * 文章信息保存
@@ -24,7 +21,7 @@ public class ArticleSaveDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "作者信息")
-    private Integer authorId;
+    private Integer userId;
 
     @ApiModelProperty(value = "文章标题")
     private String title;

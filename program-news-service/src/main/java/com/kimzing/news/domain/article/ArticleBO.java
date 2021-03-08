@@ -28,7 +28,7 @@ public class ArticleBO extends AbstractBO implements Serializable {
 
 
     @ApiModelProperty(value = "作者信息")
-    private Integer authorId;
+    private Integer userId;
 
     @ApiModelProperty(value = "文章标题")
     private String title;

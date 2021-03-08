@@ -25,8 +25,8 @@ public class ArticlePO extends AbstractPO implements Serializable {
     /**
      * 作者信息
      */
-    @TableField("author_id")
-    private Integer authorId;
+    @TableField("user_id")
+    private Integer userId;
 
     /**
      * 文章标题

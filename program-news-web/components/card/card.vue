@@ -7,8 +7,8 @@
 			<view class="card-content">
 				<view class="content-title">
 					<text>{{item.title}}</text>
-					<like></like>
 				</view>
+				<like></like>
 				<view class="content-footer">
 					<view class="content-label">
 						<view class="label-item" v-for="(label, index) in item.classify" :key="index">{{label}}</view>
@@ -23,8 +23,8 @@
 			<view class="card-content multi-card-content">
 				<view class="content-title">
 					<text>{{item.title}}</text>
-					<like></like>
 				</view>
+				<like></like>
 				<view class="content-image">
 					<view class="card-image" v-for="(image,index) in item.images" :key="index">
 						<image :src="image" mode="aspectFill"></image>
@@ -44,11 +44,11 @@
 			<view class="card-content main-card-content">
 				<view class="content-title">
 					<text>{{item.title}}</text>
-					<like></like>
 				</view>
-					<view class="main-image">
-						<image :src="item.images[0]" mode="aspectFill"></image>
-					</view>
+				<like></like>
+				<view class="main-image">
+					<image :src="item.images[0]" mode="aspectFill"></image>
+				</view>
 				<view class="content-footer">
 					<view class="content-label">
 						<view class="label-item" v-for="(label, index) in item.classify" :key="index">{{label}}</view>
@@ -72,7 +72,7 @@
 			},
 			item: {
 				type: Object,
-				default() {
+				default () {
 					return {}
 				}
 			}
@@ -115,20 +115,20 @@
 		}
 
 		.card-content {
+			position: relative;
 			display: flex;
 			flex-direction: column;
 			width: 100%;
 			justify-content: space-between;
 			margin-left: 10px;
-			
-			
+
 			.content-title {
-				position: relative;
 				padding-right: 30px;
 				font-size: 14px;
 				color: #333;
 				font-weight: 400;
 				line-height: 1.2;
+
 				text {
 					overflow: hidden;
 					width: 100%;
@@ -172,14 +172,17 @@
 				}
 			}
 		}
+
 		.content-image {
 			display: flex;
 			margin-bottom: 10px;
 			overflow: hidden;
+
 			.card-image {
 				margin-right: 10px;
 			}
 		}
+
 		.main-image {
 			flex-shrink: 0;
 			width: 100%;
@@ -188,16 +191,19 @@
 			border-radius: 5px;
 			overflow: hidden;
 			box-sizing: border-box;
+
 			image {
 				width: 100%;
 				height: 100%;
 			}
 		}
-		 .main-card-content {
-			 margin-left: 0;
-		 }
-		 .multi-card-content {
-			 margin-left: 0;
-		 }
+
+		.main-card-content {
+			margin-left: 0;
+		}
+
+		.multi-card-content {
+			margin-left: 0;
+		}
 	}
 </style>

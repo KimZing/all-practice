@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kimzing.news.repository.article.ArticleMapper">
-    <sql id="all_column">id,deleted,creator,modifier,create_time,modify_time,author_id,title,content,images,classify,mode,read_count,collection_count,comment_count,thumbs_up_count</sql>
-    <sql id="po_column">author_id,title,content,images,classify,mode,read_count,collection_count,comment_count,thumbs_up_count</sql>
+    <sql id="all_column">id,deleted,creator,modifier,create_time,modify_time,user_id,title,content,images,classify,mode,read_count,collection_count,comment_count,thumbs_up_count</sql>
+    <sql id="po_column">user_id,title,content,images,classify,mode,read_count,collection_count,comment_count,thumbs_up_count</sql>
 
     <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
         INSERT INTO `article`(<include refid="po_column"></include>)
-        VALUES(#{authorId},#{title},#{content},#{images},#{classify},#{mode},#{readCount},#{collectionCount},#{commentCount},#{thumbsUpCount});
+        VALUES(#{userId},#{title},#{content},#{images},#{classify},#{mode},#{readCount},#{collectionCount},#{commentCount},#{thumbsUpCount});
     </insert>
 
     <insert id="insertBatch">
         INSERT INTO `article` (<include refid="po_column"></include>) VALUES
         <foreach item="item" collection="list" separator=",">
-            (#{item.authorId},#{item.title},#{item.content},#{item.images},#{item.classify},#{item.mode},#{item.readCount},#{item.collectionCount},#{item.commentCount},#{item.thumbsUpCount})
+            (#{item.userId},#{item.title},#{item.content},#{item.images},#{item.classify},#{item.mode},#{item.readCount},#{item.collectionCount},#{item.commentCount},#{item.thumbsUpCount})
         </foreach>
     </insert>
 
     <update id="update">
         UPDATE `article`
         <set>
-            <if test="authorId != null">author_id = #{authorId},</if>
+            <if test="userId != null">user_id = #{userId},</if>
             <if test="title != null">title = #{title},</if>
             <if test="content != null">content = #{content},</if>
             <if test="images != null">images = #{images},</if>
@@ -46,7 +46,7 @@
         <where>
             AND deleted = 0
             <if test="query != null">
-                <if test="query.authorId != null">AND author_id = #{query.authorId}</if>
+                <if test="query.userId != null">AND user_id = #{query.userId}</if>
                 <if test="query.title != null">AND title = #{query.title}</if>
                 <if test="query.content != null">AND content = #{query.content}</if>
                 <if test="query.images != null">AND images = #{query.images}</if>
