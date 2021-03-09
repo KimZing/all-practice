@@ -17,7 +17,7 @@
 					<uni-icons type="back" size="25" color="#fff"></uni-icons>
 				</view>
 				<view class="navbar-search">
-					<input placeholder="请输入内容" maxlength="-1" @confirm="confirmSearch" focus="true"/>
+					<input type="text" placeholder="请输入内容" maxlength="-1" @confirm="confirmSearch" focus="true"/>
 				</view>
 			</view>
 		</view>
