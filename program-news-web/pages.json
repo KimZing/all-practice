@@ -27,6 +27,16 @@
             }
             
         }
+        ,{
+            "path" : "pages/home-search/home-search",
+            "style" :                                                                                    
+            {
+				"navigationStyle":"custom",
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"tabBar": {
 		"color":"#515151",
