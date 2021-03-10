@@ -1,10 +1,10 @@
 <template>
 	<view class="home">
 		<navbar source="search" @confirmSearch="confirmSearch"></navbar>
-		<view class="history">
+		<view v-if="isHistory" class="history">
 			<view class="history-header">
 				<view class="history-title">搜索历史</view>
-				<view class="history-clear">清空</view>
+				<view class="history-clear" @click="clearHistoryList">清空</view>
 			</view>
 			<view v-if="historyList.length > 0" class="history-footer">
 				<view v-for="item, index in historyList" :key="index" class="history-item">{{item}}</view>
@@ -13,20 +13,31 @@
 				<view> 没有搜索历史</view>
 			</view>
 		</view>
+		<view v-else>
+			搜索列表
+		</view>
 	</view>
 </template>
 
 <script>
+	import {mapState} from 'vuex'
 	export default {
 		data() {
 			return {
-				historyList: ["Vue", "UniApp", "Java", "Python", "Go", "React", "Android", "IOS", "Mac"]
-				// historyList: []
+				isHistory: false
 			};
+		},
+		computed: {
+			...mapState(["historyList"])
 		},
 		methods: {
 			confirmSearch(searchText) {
 				console.log(searchText);
+				// 添加历史搜索
+				this.$store.dispatch("addHistory", searchText)
+			},
+			clearHistoryList() {
+				this.$store.dispatch('clearHistoryList')
 			}
 		}
 

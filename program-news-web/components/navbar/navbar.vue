@@ -61,13 +61,12 @@
 		},
 		methods: {
 			openSearch() {
-				console.log("123123");
 				uni.navigateTo({
 					url: "/pages/home-search/home-search"
 				})
 			},
 			confirmSearch(e) {
-				this.$emit("confirmSearch", e.detail)
+				this.$emit("confirmSearch", e.detail.value)
 			},
 			backToHome() {
 				uni.navigateBack()
