@@ -77,17 +77,34 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     /**
+     * 根据关键词分页搜索文章信息
+     *
+     * @param search
+     * @param userId
+     * @param pageParam
+     * @return
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public PageResult<ArticleBO> searchWithPage(String search, Integer userId, PageParam pageParam) {
+        IPage<ArticleBO> articleBOPage = articleMapper.selectPageByKeyword(convertPage(pageParam), search, userId);
+        return convertPageResult(articleBOPage);
+    }
+
+    /**
      * 更改文章收藏状态
+     *
      * @param articleLikeDTO
      */
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void updateArticleLikeStatus(ArticleLikeDTO articleLikeDTO) {
-        if(articleMapper.selectArticleLike(articleLikeDTO) != null) {
+        if (articleMapper.selectArticleLike(articleLikeDTO) != null) {
             articleMapper.removeArticleLike(articleLikeDTO);
             return;
         }
         articleMapper.addArticleLike(articleLikeDTO);
     }
+
 
 }

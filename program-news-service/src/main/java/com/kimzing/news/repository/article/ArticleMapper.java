@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.kimzing.news.domain.article.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
 /**
@@ -47,7 +48,17 @@ public interface ArticleMapper {
     IPage<ArticleBO> selectPage(Page<ArticleBO> page, @Param("query") ArticleQueryDTO articleQueryDTO);
 
     /**
+     * 根据关键词分页搜索文章信息
+     *
+     * @param page
+     * @param search
+     * @return
+     */
+    IPage<ArticleBO> selectPageByKeyword(Page<ArticleBO> page, @Param("search") String search, @Param("userId") Integer userId);
+
+    /**
      * 查询用户对某个文章的收藏信息
+     *
      * @param articleLikeDTO
      * @return
      */
@@ -55,6 +66,7 @@ public interface ArticleMapper {
 
     /**
      * 添加用户收藏
+     *
      * @param articleLikeDTO
      */
     void addArticleLike(ArticleLikeDTO articleLikeDTO);
@@ -63,4 +75,6 @@ public interface ArticleMapper {
      * 取消用户收藏
      */
     void removeArticleLike(ArticleLikeDTO articleLikeDTO);
+
+
 }

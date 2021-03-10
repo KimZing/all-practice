@@ -3,6 +3,7 @@ package com.kimzing.news.service.article;
 import com.kimzing.news.domain.article.*;
 import com.kimzing.utils.page.PageParam;
 import com.kimzing.utils.page.PageResult;
+
 import javax.validation.constraints.NotNull;
 
 /**
@@ -38,9 +39,22 @@ public interface ArticleService {
      */
     PageResult<ArticleBO> listPage(ArticleQueryDTO articleQueryDTO, PageParam pageParam);
 
+
+    /**
+     * 根据关键词分页搜索文章信息
+     *
+     * @param search
+     * @param userId
+     * @param pageParam
+     * @return
+     */
+    PageResult<ArticleBO> searchWithPage(String search, Integer userId, PageParam pageParam);
+
     /**
      * 更改文章收藏状态
+     *
      * @param articleLikeDTO
      */
     void updateArticleLikeStatus(ArticleLikeDTO articleLikeDTO);
+
 }

@@ -68,6 +68,14 @@
         </where>
     </select>
 
+    <select id="selectPageByKeyword" resultType="com.kimzing.news.domain.article.ArticleBO">
+        SELECT a.*, ru.article_id > 0 as `isLike` FROM `article` a LEFT JOIN `r_user_like_article`  ru ON a.id = ru.article_id and ru.user_id = #{userId}
+        <where>
+            AND a.deleted = 0
+            AND ( a.title like "%"#{search}"%" OR a.content like "%"#{search}"%" OR a.classify like "%"#{search}"%")
+        </where>
+    </select>
+
     <select id="selectArticleLike" resultType="com.kimzing.news.domain.article.ArticleLikeBO"
             parameterType="com.kimzing.news.domain.article.ArticleLikeDTO">
         SELECT id, article_id, user_id FROM `r_user_like_article` WHERE user_id = #{userId} AND article_id = #{articleId} LIMIT 1;

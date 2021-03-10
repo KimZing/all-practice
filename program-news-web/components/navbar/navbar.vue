@@ -69,7 +69,9 @@
 				this.$emit("confirmSearch", e.detail.value)
 			},
 			backToHome() {
-				uni.navigateBack()
+				uni.switchTab({
+					url: "/pages/tabbar/home/home"
+				})
 			}
 		}
 	}

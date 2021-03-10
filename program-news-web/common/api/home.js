@@ -22,6 +22,17 @@ export const getArticleList = (data) => {
 	})
 }
 
+export const searchArticle = (data) => {
+	// pageSize pageNum search userId
+	return request({
+		url: "http://localhost:8081/article/search",
+		method: "GET",
+		data
+	})
+}
+
+
+
 export const updateArticleLike = (articleId) => {
 	return request({
 		url: "http://localhost:8081/article/like",

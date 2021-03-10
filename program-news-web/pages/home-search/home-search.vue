@@ -7,37 +7,90 @@
 				<view class="history-clear" @click="clearHistoryList">清空</view>
 			</view>
 			<view v-if="historyList.length > 0" class="history-footer">
-				<view v-for="item, index in historyList" :key="index" class="history-item">{{item}}</view>
+				<view v-for="item, index in historyList" :key="index" class="history-item" @click="clickHistory(item)">{{item}}</view>
 			</view>
 			<view v-else class="no-history">
 				<view> 没有搜索历史</view>
 			</view>
 		</view>
-		<view v-else>
-			搜索列表
-		</view>
+		<listItem v-else :list="articleList" @loadMore="loadMore" :load="load"></listItem>
 	</view>
 </template>
 
 <script>
-	import {mapState} from 'vuex'
+	import {
+		mapState
+	} from 'vuex'
+	import listItem from '../../components/swiper-list/list-item.vue'
 	export default {
+		components: {listItem},
 		data() {
 			return {
-				isHistory: false
+				isHistory: true,
+				articleList: [],
+				load: {
+					status: "loading",
+				},
+				pageNum: 1,
+				pageSize: 10,
+				search: ""
 			};
 		},
 		computed: {
 			...mapState(["historyList"])
 		},
 		methods: {
-			confirmSearch(searchText) {
-				console.log(searchText);
+			confirmSearch(search) {
 				// 添加历史搜索
-				this.$store.dispatch("addHistory", searchText)
+				this.$store.dispatch("addHistory", search)
+				this.search = search
+				this.pageNum = 1
+				this.articleList = [],
+				this.load.status = "loading"
+				this.searchArticle(this.search)
 			},
 			clearHistoryList() {
 				this.$store.dispatch('clearHistoryList')
+				uni.showToast({
+					title: "清空成功"
+				})
+			},
+			loadMore() {
+				console.log("asdfasdf");
+				this.pageNum++
+				// 如果没有更多数据了，就不继续请求数据了
+				if (this.load.status === 'noMore') {
+					return
+				}
+				this.searchArticle(this.search)
+			},
+			searchArticle(search) {
+				this.isHistory = false;
+				this.$api.searchArticle({
+					search,
+					pageSize: 10,
+					pageNum: this.pageNum
+				}).then(res => {
+					let listTemp = res.list.map(l => {
+						l.images = l.images.split(",");
+						l.classify = l.classify.split(",")
+						return l;
+					})
+					// 如果没有更过数据了，那么修改当前的load组件状态
+					if (listTemp.length === 0) {
+						this.load.status = "noMore"
+						return
+					}
+					
+					// 保留之前的数据
+					listTemp = [...this.articleList, ...listTemp]
+					// 这里需要使用$set触发更新，不然更新完list，页面不会刷新
+					this.articleList = listTemp
+				})
+			},
+			clickHistory(item) {
+				this.search = item
+				confirmSearch(item)
 			}
 		}
 

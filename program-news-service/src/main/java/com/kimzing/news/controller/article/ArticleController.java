@@ -55,6 +55,12 @@ public class ArticleController {
         return articleService.listPage(articleQueryDTO, pageParam);
     }
 
+    @ApiOperation(value = "根据关键词分页搜索文章信息")
+    @GetMapping("/search")
+    public PageResult<ArticleBO> searchWithPage(@RequestParam("search") String search, @RequestParam("userId") Integer userId, @ModelAttribute PageParam pageParam) {
+        return articleService.searchWithPage(search, userId, pageParam);
+    }
+
     @ApiOperation(value = "更改文章的收藏状态")
     @PutMapping("/like")
     public void updateArticleLikeStatus(@RequestBody ArticleLikeDTO articleLikeDTO) {
