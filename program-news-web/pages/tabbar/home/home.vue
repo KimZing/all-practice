@@ -2,7 +2,7 @@
 	<view class="home">
 		<navbar></navbar>
 		<tab :list="labels" @clickTab="clickTab" :current="current"></tab>
-		<swiper-list :tab="labels" :current="current" @changeSwiper="changeSwiper"></swiper-list>
+		<swiper-list class="swiper-list" :tab="labels" :current="current" @changeSwiper="changeSwiper"></swiper-list>
 	</view>
 </template>
 
@@ -56,5 +56,9 @@
 		flex: 1;
 		// 这个地方也同时解决了tab的溢出问题
 		overflow: hidden;
+		// MARK 这个地方真的是坑死人，h5是正常的，但是小程序里就必须加上，否则占据的高度为0
+		.swiper-list {
+			flex: 1;
+		}
 	}
 </style>

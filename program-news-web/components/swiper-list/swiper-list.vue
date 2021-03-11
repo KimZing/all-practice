@@ -117,13 +117,13 @@
 <style lang="scss">
 	.swiper-page {
 		height: 100%;
-	}
-
-	.swiper {
-		height: 100%;
-
-		.swiper-item {
+		.swiper {
 			height: 100%;
+			.swiper-item {
+				height: 100%;
+			}
 		}
 	}
+
+	
 </style>
