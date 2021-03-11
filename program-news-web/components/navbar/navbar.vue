@@ -17,7 +17,7 @@
 					<uni-icons type="back" size="25" color="#fff"></uni-icons>
 				</view>
 				<view class="navbar-search">
-					<input type="text" placeholder="请输入内容" maxlength="-1" @confirm="confirmSearch" focus="true"/>
+					<input class=".navbar-search-input" type="text" placeholder="请输入内容" maxlength="-1" @confirm="confirmSearch" focus="true"/>
 				</view>
 			</view>
 		</view>
@@ -115,7 +115,7 @@
 				padding-left: 0;
 				.navbar-search {
 					border-radius: 5px;
-					input {
+					.navbar-search-input {
 						width: 100%;
 					}
 				}

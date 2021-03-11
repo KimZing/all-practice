@@ -2,11 +2,11 @@
 	<view @click="openDetail">
 		<view v-if="mode === 'basic'" class="card">
 			<view class="card-image">
-				<image :src="item.images[0]" mode="aspectFill"></image>
+				<image class="image" :src="item.images[0]" mode="aspectFill"></image>
 			</view>
 			<view class="card-content">
 				<view class="content-title">
-					<text>{{item.title}}</text>
+					<text class="content-title-text">{{item.title}}</text>
 				</view>
 				<like :item="item"></like>
 				<view class="content-footer">
@@ -22,12 +22,12 @@
 		<view v-if="mode === 'multi'" class="card">
 			<view class="card-content multi-card-content">
 				<view class="content-title">
-					<text>{{item.title}}</text>
+					<text class="content-title-text">{{item.title}}</text>
 				</view>
 				<like :item="item"></like>
 				<view class="content-image">
 					<view class="card-image" v-for="(image,index) in item.images" :key="index">
-						<image :src="image" mode="aspectFill"></image>
+						<image class="image" :src="image" mode="aspectFill"></image>
 					</view>
 				</view>
 				<view class="content-footer">
@@ -43,11 +43,11 @@
 		<view v-if="mode === 'main'" class="card">
 			<view class="card-content main-card-content">
 				<view class="content-title">
-					<text>{{item.title}}</text>
+					<text class="content-title-text">{{item.title}}</text>
 				</view>
 				<like :item="item"></like>
 				<view class="main-image">
-					<image :src="item.images[0]" mode="aspectFill"></image>
+					<image class="image" :src="item.images[0]" mode="aspectFill"></image>
 				</view>
 				<view class="content-footer">
 					<view class="content-label">
@@ -107,11 +107,6 @@
 			height: 60px;
 			border-radius: 5px;
 			overflow: hidden;
-
-			image {
-				width: 100%;
-				height: 100%;
-			}
 		}
 
 		.card-content {
@@ -129,7 +124,7 @@
 				font-weight: 400;
 				line-height: 1.2;
 
-				text {
+				.content-title-text {
 					overflow: hidden;
 					width: 100%;
 					display: -webkit-box;
@@ -191,11 +186,6 @@
 			border-radius: 5px;
 			overflow: hidden;
 			box-sizing: border-box;
-
-			image {
-				width: 100%;
-				height: 100%;
-			}
 		}
 
 		.main-card-content {
@@ -205,5 +195,10 @@
 		.multi-card-content {
 			margin-left: 0;
 		}
+	}
+	
+	.image {
+		width: 100%;
+		height: 100%;
 	}
 </style>
