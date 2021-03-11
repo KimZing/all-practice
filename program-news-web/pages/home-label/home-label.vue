@@ -14,7 +14,7 @@
 				<view v-if="loading">
 					<uni-load-more iconType="snow" status="loading"></uni-load-more>
 				</view>
-				<view v-if="showLabelList.length === 0" class="no-data">
+				<view v-if="showLabelList.length === 0 && !loading" class="no-data">
 					暂无标签
 				</view>
 			</view>
@@ -30,7 +30,7 @@
 				<view v-if="loading">
 					<uni-load-more iconType="snow" status="loading"></uni-load-more>
 				</view>
-				<view v-if="unShowLabelList.length === 0" class="no-data">
+				<view v-if="unShowLabelList.length === 0 && !loading" class="no-data">
 					暂无推荐
 				</view>
 			</view>
