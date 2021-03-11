@@ -1,6 +1,6 @@
 <template>
 	<view class="scroll">
-		<scroll-view class="list-scroll" scroll-y @scrolltolower="loadMore">
+		<scroll-view class="list-scroll" enable-flex="true" scroll-y @scrolltolower="loadMore">
 			<view>
 				<slot></slot>
 			</view>
