@@ -48,6 +48,15 @@ public class LabelController {
         labelService.update(labelUpdateDTO);
     }
 
+    // TODO 可以使用sql进行批量操作
+    @ApiOperation(value = "批量更新标签信息")
+    @PutMapping("/list")
+    public void updateLabels(@RequestBody List<LabelUpdateDTO> labelUpdateDTOList) {
+        labelUpdateDTOList.forEach(update -> this.update(update));
+    }
+
+
+
     @ApiOperation(value = "查询单个标签信息")
     @GetMapping("/{id}")
     public LabelBO get(@PathVariable("id") Integer id) {

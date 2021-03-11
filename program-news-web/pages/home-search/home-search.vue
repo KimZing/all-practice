@@ -90,7 +90,7 @@
 			},
 			clickHistory(item) {
 				this.search = item
-				confirmSearch(item)
+				this.confirmSearch(item)
 			}
 		}
 

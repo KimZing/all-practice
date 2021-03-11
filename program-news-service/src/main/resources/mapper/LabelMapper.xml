@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kimzing.news.repository.label.LabelMapper">
-    <sql id="all_column">id,deleted,creator,modifier,create_time,modify_time,name</sql>
-    <sql id="po_column">name</sql>
+    <sql id="all_column">id,deleted,creator,modifier,create_time,modify_time,name,`show`</sql>
+    <sql id="po_column">name,show</sql>
 
     <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
         INSERT INTO `label`(<include refid="po_column"></include>)
-        VALUES(#{name});
+        VALUES(#{name}, #{show});
     </insert>
 
     <insert id="insertBatch">
         INSERT INTO `label` (<include refid="po_column"></include>) VALUES
         <foreach item="item" collection="list" separator=",">
-            (#{item.name})
+            (#{item.name},#{item.show})
         </foreach>
     </insert>
 
@@ -20,6 +20,7 @@
         UPDATE `label`
         <set>
             <if test="name != null">name = #{name},</if>
+            <if test="show != null">`show` = #{show},</if>
         </set>
         WHERE id = #{id} AND deleted = 0;
     </update>
@@ -38,6 +39,7 @@
             AND deleted = 0
             <if test="query != null">
                 <if test="query.name != null">AND name = #{query.name}</if>
+                <if test="query.show != null">AND `show` = #{query.show}</if>
             </if>
         </where>
     </select>

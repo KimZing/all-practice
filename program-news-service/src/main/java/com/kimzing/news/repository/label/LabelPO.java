@@ -1,11 +1,12 @@
 package com.kimzing.news.repository.label;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.kimzing.utils.po.AbstractPO;
-import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+
 import java.io.Serializable;
 
 /**
@@ -27,5 +28,8 @@ public class LabelPO extends AbstractPO implements Serializable {
      */
     @TableField("name")
     private String name;
+
+    @TableField("show")
+    private Integer show;
 
 }

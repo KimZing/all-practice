@@ -1,7 +1,7 @@
 <template>
 	<view class="swiper-page">
 		<swiper class="swiper" @change="changeSwiper" :current="current">
-			<swiper-item v-for="(item, index) in tab" :key="index" class="swiper-item">
+			<swiper-item v-for="(item, index) in tab" :key="item.id" class="swiper-item">
 				<listItem :list="cacheList[index]" @loadMore="loadMore" :load="cacheLoad[index]"></listItem>
 			</swiper-item>
 		</swiper>
@@ -18,8 +18,10 @@
 		// 	this.getArticleList()
 		// },
 		watch: {
-			"tab": function(newVal) {
+			tab(newVal) {
 				if (newVal.length === 0) return
+				this.cacheList = {}
+				this.cacheLoad = {}
 				this.getArticleList(0)
 			}
 		},
@@ -41,10 +43,10 @@
 		data() {
 			return {
 				// 直接赋值到当前集合，会导致每次页面刷新都会卡顿，可以使用缓存数据(一个map<String, List>)的机制来缓存之前的数据
-				list: [],
+				// list: [],
 				cacheList: {},
 				cacheLoad: {},
-				pageSize: 8,
+				pageSize: 10,
 			};
 		},
 		methods: {

@@ -15,14 +15,12 @@
 			}
 		},
 		onLoad() {
-			this.$api.getAllLabel()
-				.then((data) => {
-					data.unshift({name: "全部"})
-					this.labels = data
-				})
-				.catch((err) => {
-					console.log(err);
-				})
+			// 监听事件，只有打开的页面才能监听到
+			uni.$on("EditLabelSuccess", () => {
+				this.getAllLabel()
+				this.current = 0
+			})
+			this.getAllLabel()
 		},
 		methods: {
 			clickTab(data) {
@@ -30,6 +28,16 @@
 			},
 			changeSwiper(data) {
 				this.current = data.current
+			},
+			getAllLabel() {
+				this.$api.getAllLabel()
+					.then((data) => {
+						data.unshift({name: "全部", show: 1})
+						this.labels = data
+					})
+					.catch((err) => {
+						console.log(err);
+					})
 			}
 		}
 	}

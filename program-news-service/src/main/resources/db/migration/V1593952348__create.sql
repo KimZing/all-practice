@@ -2,6 +2,7 @@ CREATE TABLE IF NOT EXISTS `label`
 (
     `id`          int(11)     NOT NULL AUTO_INCREMENT COMMENT 'ID',
     `name`        varchar(20) NOT NULL COMMENT '标签名',
+    `show`        int(1)      NOT NULL DEFAULT 1 COMMENT '是否显示',
     `deleted`     int(1)      NOT NULL DEFAULT 0 COMMENT '是否删除 0:未删除 1:已删除',
     `creator`     varchar(20)          DEFAULT NULL COMMENT '创建人',
     `modifier`    varchar(20)          DEFAULT NULL COMMENT '更新人',

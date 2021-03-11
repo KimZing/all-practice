@@ -2,10 +2,10 @@
 	<view class="tab">
 		<scroll-view scroll-x class="tab-scroll">
 			<view class="scroll-content">
-				<view class="scroll-item" :class="{active: activeIndex === index}" v-for="item,index in list" :key="index" @click="handleClick(item, index)">{{item.name}}</view>
+				<view class="scroll-item" :class="{active: activeIndex === index}" v-if="item.show === 1" v-for="item,index in list" :key="item.id" @click="handleClick(item, index)">{{item.name}}</view>
 			</view>
 		</scroll-view>
-		<view class="tab-icons" >
+		<view class="tab-icons" @click="openLabel">
 			<uni-icons type="gear" size="26" color="#666666"></uni-icons>
 		</view>
 	</view>
@@ -41,6 +41,11 @@
 				this.$emit("clickTab", {
 					item,
 					index
+				})
+			},
+			openLabel() {
+				uni.navigateTo({
+					url: "/pages/home-label/home-label"
 				})
 			}
 		}

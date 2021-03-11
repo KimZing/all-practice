@@ -1,16 +1,13 @@
 package com.kimzing.news.domain.label;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import java.time.LocalDateTime;
-import java.math.BigDecimal;
 import com.kimzing.utils.po.AbstractBO;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.Serializable;
 import lombok.Data;
-import lombok.experimental.Accessors;
 import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
+
+import java.io.Serializable;
 
 /**
  * 标签信息业务对象
@@ -29,5 +26,8 @@ public class LabelBO extends AbstractBO implements Serializable {
 
     @ApiModelProperty(value = "标签名")
     private String name;
+
+    @ApiModelProperty(value = "是否显示")
+    private Integer show;
 
 }
