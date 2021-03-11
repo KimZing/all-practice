@@ -20,8 +20,8 @@
 		watch: {
 			tab(newVal) {
 				if (newVal.length === 0) return
-				this.cacheList = {}
-				this.cacheLoad = {}
+				this.cacheList = []
+				this.cacheLoad = []
 				this.getArticleList(0)
 			}
 		},
@@ -44,8 +44,8 @@
 			return {
 				// 直接赋值到当前集合，会导致每次页面刷新都会卡顿，可以使用缓存数据(一个map<String, List>)的机制来缓存之前的数据
 				// list: [],
-				cacheList: {},
-				cacheLoad: {},
+				cacheList: [],
+				cacheLoad: [],
 				pageSize: 10,
 			};
 		},
@@ -100,7 +100,7 @@
 					if (listTemp.length === 0) {
 						let oldLoad = {status: "noMore", pageNum: this.cacheLoad[current].pageNum}
 						this.$set(this.cacheLoad, current, oldLoad)
-						this.$forceUpdate()
+						// this.$forceUpdate()
 						return 
 					}
 					// 保留之前的数据
