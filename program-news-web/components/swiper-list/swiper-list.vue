@@ -19,7 +19,6 @@
 		// },
 		watch: {
 			tab(newVal) {
-				console.log("触发更新", newVal);
 				if (newVal.length === 0) return
 				this.cacheList = {}
 				this.cacheLoad = {}
