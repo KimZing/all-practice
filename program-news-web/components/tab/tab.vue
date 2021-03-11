@@ -2,7 +2,7 @@
 	<view class="tab">
 		<scroll-view scroll-x class="tab-scroll">
 			<view class="scroll-content">
-				<view class="scroll-item" :class="{active: activeIndex === index}" v-if="item.show === 1" v-for="item,index in list" :key="item.id" @click="handleClick(item, index)">{{item.name}}</view>
+				<view class="scroll-item" :class="{active: activeIndex === index}"  v-for="item,index in list" :key="item.id" @click="handleClick(item, index)">{{item.name}}</view>
 			</view>
 		</scroll-view>
 		<view class="tab-icons" @click="openLabel">

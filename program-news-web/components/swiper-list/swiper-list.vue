@@ -1,7 +1,7 @@
 <template>
 	<view class="swiper-page">
 		<swiper class="swiper" @change="changeSwiper" :current="current">
-			<swiper-item v-for="(item, index) in tab" :key="item.id" class="swiper-item">
+			<swiper-item v-for="(item, index) in tab" :key="index" class="swiper-item">
 				<listItem :list="cacheList[index]" @loadMore="loadMore" :load="cacheLoad[index]"></listItem>
 			</swiper-item>
 		</swiper>
@@ -19,6 +19,7 @@
 		// },
 		watch: {
 			tab(newVal) {
+				console.log("触发更新", newVal);
 				if (newVal.length === 0) return
 				this.cacheList = {}
 				this.cacheLoad = {}

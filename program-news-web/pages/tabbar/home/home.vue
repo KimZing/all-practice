@@ -33,7 +33,8 @@
 				this.$api.getAllLabel()
 					.then((data) => {
 						data.unshift({name: "全部", show: 1})
-						this.labels = data
+						// 只展示设置show=1的标签
+						this.labels = data.filter(i => i.show === 1)
 					})
 					.catch((err) => {
 						console.log(err);
