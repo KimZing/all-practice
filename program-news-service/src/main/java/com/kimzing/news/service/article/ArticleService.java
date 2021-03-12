@@ -57,4 +57,11 @@ public interface ArticleService {
      */
     void updateArticleLikeStatus(ArticleLikeDTO articleLikeDTO);
 
+    /**
+     * 查询所有已收藏的文章
+     * @param userId
+     * @param pageParam
+     * @return
+     */
+    PageResult<ArticleBO> listLikeWithPage(Integer userId, PageParam pageParam);
 }

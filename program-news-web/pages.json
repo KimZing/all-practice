@@ -4,21 +4,21 @@
 			"path": "pages/tabbar/home/home",
 			"style": {
 				"navigationStyle": "custom",
-				"navigationBarTitleText": "首页"
+				"navigationBarTitleText": "首  页"
 			}
 		}, {
 			"path": "pages/tabbar/mine/mine",
 			"style": {
-				"navigationStyle": "custom",
-				"navigationBarTitleText": "关注",
+				"navigationStyle": "default",
+				"navigationBarTitleText": "我  的",
 				"enablePullDownRefresh": false
 			}
 
 		}, {
 			"path": "pages/tabbar/follow/follow",
 			"style": {
-				"navigationStyle": "custom",
-				"navigationBarTitleText": "我的",
+				"navigationStyle": "default",
+				"navigationBarTitleText": "关  注",
 				"enablePullDownRefresh": false
 			}
 
@@ -40,7 +40,17 @@
 			}
 
 		}
-	],
+	    ,{
+            "path" : "pages/home-detail/home-detail",
+            "style" :                                                                                    
+            {
+				"navigationStyle":"default",
+                "navigationBarTitleText": "文章详情",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
 	"tabBar": {
 		"color": "#515151",
 		"selectedColor": "#1296db",

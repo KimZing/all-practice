@@ -1,7 +1,5 @@
 import request from '../../utils/http.js'
-
-const host = "http://8080.kimzing.com"
-// const host = "http://localhost:8080"
+import {host} from '@/common/constants.js'
 
 // 获取所有标签
 export const getAllLabel = (data) => {

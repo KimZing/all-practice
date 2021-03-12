@@ -61,6 +61,12 @@ public class ArticleController {
         return articleService.searchWithPage(search, userId, pageParam);
     }
 
+    @ApiOperation(value = "查询所有已收藏的文章")
+    @GetMapping("/like")
+    public PageResult<ArticleBO> listLikeWithPage(@RequestParam("userId") Integer userId, @ModelAttribute PageParam pageParam) {
+        return articleService.listLikeWithPage(userId, pageParam);
+    }
+
     @ApiOperation(value = "更改文章的收藏状态")
     @PutMapping("/like")
     public void updateArticleLikeStatus(@RequestBody ArticleLikeDTO articleLikeDTO) {

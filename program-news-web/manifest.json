@@ -76,7 +76,8 @@
     "h5" : {
         "devServer" : {
             "disableHostCheck" : true,
-			"port": 7000
-        }
+            "port" : 7000
+        },
+        "title" : "小金新闻"
     }
 }

@@ -106,5 +106,17 @@ public class ArticleServiceImpl implements ArticleService {
         articleMapper.addArticleLike(articleLikeDTO);
     }
 
+    /**
+     * 查询所有已收藏的文章
+     * @param userId
+     * @param pageParam
+     * @return
+     */
+    @Override
+    public PageResult<ArticleBO> listLikeWithPage(Integer userId, PageParam pageParam) {
+        IPage<ArticleBO> articleBOPage = articleMapper.selectPageOfAllLike(convertPage(pageParam), userId);
+        return convertPageResult(articleBOPage);
+    }
+
 
 }

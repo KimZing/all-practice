@@ -77,4 +77,11 @@ public interface ArticleMapper {
     void removeArticleLike(ArticleLikeDTO articleLikeDTO);
 
 
+    /**
+     * 查询所有已收藏的文章
+     * @param convertPage
+     * @param userId
+     * @return
+     */
+    IPage<ArticleBO> selectPageOfAllLike(Page<Object> convertPage, Integer userId);
 }
