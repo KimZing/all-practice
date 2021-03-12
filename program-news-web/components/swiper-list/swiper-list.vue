@@ -49,6 +49,15 @@
 				pageSize: 10,
 			};
 		},
+		created() {
+			uni.$on("updateArticle", () => {
+				console.log("主页更新");
+				this.cacheList = []
+				this.cacheLoad = []
+				// this.current = 0
+				this.getArticleList(this.current)
+			})
+		},
 		methods: {
 			loadMore() {
 				this.cacheLoad[this.current].pageNum++

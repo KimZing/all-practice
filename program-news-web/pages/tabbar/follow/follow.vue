@@ -44,6 +44,11 @@
 			}
 		},
 		onLoad() {
+			uni.$on("updateArticle", () =>{
+				this.articleList = [];
+				this.pageNum = 1;
+				this.getUserLikeArticleList()
+			})
 			this.getUserLikeArticleList()
 		},
 		methods: {

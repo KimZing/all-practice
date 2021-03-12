@@ -33,6 +33,8 @@
 						title: this.like? "收藏成功" : "取消收藏",
 						icon: 'none'
 					})
+					// 触发更新时间
+					uni.$emit("updateArticle")
 				}).catch(e => {
 					uni.hideLoading()
 				})
