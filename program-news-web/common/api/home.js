@@ -1,9 +1,12 @@
 import request from '../../utils/http.js'
 
+const host = "http://8080.kimzing.com"
+// const host = "http://localhost:8080"
+
 // 获取所有标签
 export const getAllLabel = (data) => {
 	return request({
-		url: "http://localhost:8081/label/all",
+		url: host + "/label/all",
 		data,
 	})
 }
@@ -16,7 +19,7 @@ export const getArticleList = (data) => {
 		pageSize
 	} = data;
 	return request({
-		url: "http://localhost:8081/article/list?pageNum=" + pageNum + "&pageSize=" + pageSize,
+		url: host + "/article/list?pageNum=" + pageNum + "&pageSize=" + pageSize,
 		method: "POST",
 		data: {
 			userId: 1,
@@ -29,7 +32,7 @@ export const getArticleList = (data) => {
 export const searchArticle = (data) => {
 	// pageSize pageNum search userId
 	return request({
-		url: "http://localhost:8081/article/search",
+		url: host + "/article/search",
 		method: "GET",
 		data: {
 			...data,
@@ -41,7 +44,7 @@ export const searchArticle = (data) => {
 // 批量更新标签信息
 export const updateLabelList = (labelList) => {
 	return request({
-		url: "http://localhost:8081/label/list",
+		url: host + "/label/list",
 		method: "PUT",
 		data: labelList
 	})
@@ -51,7 +54,7 @@ export const updateLabelList = (labelList) => {
 // 更新当前用户的文章收藏状态
 export const updateArticleLike = (articleId) => {
 	return request({
-		url: "http://localhost:8081/article/like",
+		url: host + "/article/like",
 		method: "PUT",
 		data: {
 			articleId,
