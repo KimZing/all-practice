@@ -8,7 +8,7 @@
 				<view class="content-title">
 					<text class="content-title-text">{{item.title}}</text>
 				</view>
-				<like :item="item"></like>
+				<like :item="item" :source="source"></like>
 				<view class="content-footer">
 					<view class="content-label">
 						<view class="label-item" v-for="(label, index) in item.classify" :key="index">{{label}}</view>
@@ -24,7 +24,7 @@
 				<view class="content-title">
 					<text class="content-title-text">{{item.title}}</text>
 				</view>
-				<like :item="item"></like>
+				<like :item="item" :source="source"></like>
 				<view class="content-image">
 					<view class="card-image" v-for="(image,index) in item.images" :key="index">
 						<image class="image" :src="image" mode="aspectFill"></image>
@@ -45,7 +45,7 @@
 				<view class="content-title">
 					<text class="content-title-text">{{item.title}}</text>
 				</view>
-				<like :item="item"></like>
+				<like :item="item" :source="source"></like>
 				<view class="main-image">
 					<image class="image" :src="item.images[0]" mode="aspectFill"></image>
 				</view>
@@ -75,6 +75,10 @@
 				default () {
 					return {}
 				}
+			},
+			source: {
+				type: String,
+				default: "default"
 			}
 		},
 		data() {

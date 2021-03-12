@@ -1,6 +1,6 @@
 <template>
 	<list-scroll @loadMore="loadMore">
-		<card :mode="item.mode" v-for="item in list" :key="item.id" :item="item"></card>
+		<card :mode="item.mode" v-for="item in list" :key="item.id" :item="item" :source="source"></card>
 		<uni-load-more  v-if="list.length === 0 || list.length > 7" iconType="snow" :status="load.status"></uni-load-more>
 	</list-scroll>
 </template>
@@ -21,6 +21,10 @@
 						status: "loading"
 					}
 				}
+			},
+			source: {
+				type: String,
+				default: "default"
 			}
 		},
 		methods: {

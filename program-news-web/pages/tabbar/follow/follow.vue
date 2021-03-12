@@ -14,7 +14,7 @@
 			<swiper class="swiper" :current="index">
 				<swiper-item class="swiper-item">
 					<view class="item-wrapper">
-						<listItem :list="articleList" @loadMore="loadMore" :load="load">
+						<listItem :list="articleList" @loadMore="loadMore" :load="load" source="follow">
 						</listItem>
 					</view>
 				</swiper-item>
@@ -44,7 +44,7 @@
 			}
 		},
 		onLoad() {
-			uni.$on("updateArticle", () =>{
+			uni.$on("updateArticle", () => {
 				this.articleList = [];
 				this.pageNum = 1;
 				this.getUserLikeArticleList()

@@ -13,6 +13,10 @@
 				default () {
 					return {}
 				}
+			},
+			source: {
+				type: String,
+				default: "default"
 			}
 		},
 		created() {
@@ -30,11 +34,11 @@
 				this.$api.updateArticleLike(this.item.id).then(res => {
 					uni.hideLoading()
 					uni.showToast({
-						title: this.like? "收藏成功" : "取消收藏",
+						title: this.like ? "收藏成功" : "取消收藏",
 						icon: 'none'
 					})
 					// 触发更新时间
-					uni.$emit("updateArticle")
+					uni.$emit("updateArticle", this.source)
 				}).catch(e => {
 					uni.hideLoading()
 				})

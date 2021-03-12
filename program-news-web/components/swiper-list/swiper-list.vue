@@ -50,12 +50,13 @@
 			};
 		},
 		created() {
-			uni.$on("updateArticle", () => {
-				console.log("主页更新");
-				this.cacheList = []
-				this.cacheLoad = []
-				// this.current = 0
-				this.getArticleList(this.current)
+			uni.$on("updateArticle", (e) => {
+				if(e === "follow") {
+					this.cacheList = []
+					this.cacheLoad = []
+					// this.current = 0
+					this.getArticleList(this.current)
+				}
 			})
 		},
 		methods: {
